@@ -6,19 +6,17 @@
 
 Motifs are blueprints for recurring ideas that are expected, and have been observed, the community to build. They are not full applications, but rather recurring aspects of applications, which may require a collection of technical features and APIs to be achieved. MR Motifs teach MR best practices, inspire developers and spark new ideas. The goal is to stop developers from having to reinvent the wheel by providing them with a solid baseline for popular mechanics, that can be frequently observed.
 
-Find more information in the [**`Developer Documentation`**](https://developers.meta.com/horizon/documentation/unity/)!
+Find more information in the [**`Developer Documentation`**](https://developers.meta.com/horizon/documentation/unity/unity-mrmotifs-overview/)!
 
 # Requirements
 
-- [Unity 6](https://unity.com/releases/editor/whats-new/6000.0.40) (Recommended) or `Unity 2022.3 LTS`
+- [Unity 6](https://unity.com/releases/editor/whats-new/6000.0.25) (Recommended) or later
 - URP (Recommended) or BiRP
-- Oculus XR Plugin (`4.3.0`) - com.unity.xr.oculus
-- [Meta XR Core SDK](https://assetstore.unity.com/packages/tools/integration/meta-xr-core-sdk-269169) (`74.0.0`) - com.meta.xr.sdk.core
-- [Meta XR Interaction SDK](https://assetstore.unity.com/packages/tools/integration/meta-xr-interaction-sdk-265014) (`74.0.0`) - com.meta.xr.sdk.interaction.ovr
-- [Meta XR Interaction SDK Essentials](https://assetstore.unity.com/packages/tools/integration/meta-xr-interaction-sdk-essentials-264559) (`74.0.0`) - com.meta.xr.sdk.interaction
-
-> [!CAUTION]
-> If you plan to use the **OpenXR plugin**, be aware that the Avatar SDK does not yet support it. If you still would like to use the other MR Motif samples with **OpenXR**, make sure that, alongside the **OpenXR plugin**, you also install the Unity **OpenXR Meta plugin** (`com.unity.xr.meta-openxr@2.1.0-pre.1`), in order for the **Depth API** to work.
+- OpenXR Plugin (`1.15.0`) - com.unity.xr.openxr
+- Unity OpenXR Meta (`2.2.0`) - com.unity.xr.meta-openxr
+- [Meta XR Core SDK](https://assetstore.unity.com/packages/tools/integration/meta-xr-core-sdk-269169) (`78.0.0`) - com.meta.xr.sdk.core
+- [Meta XR Interaction SDK](https://assetstore.unity.com/packages/tools/integration/meta-xr-interaction-sdk-265014) (`78.0.0`) - com.meta.xr.sdk.interaction.ovr
+- [Meta XR Interaction SDK Essentials](https://assetstore.unity.com/packages/tools/integration/meta-xr-interaction-sdk-essentials-264559) (`78.0.0`) - com.meta.xr.sdk.interaction
 
 # MR Motifs Library
 
@@ -126,17 +124,15 @@ Create convincing shared activities in MR that encourage authentic, intuitive in
 When using the **Shared Activities** MR Motif, there are several additional requirements that need to be met in order to use the full functionality of this sample. The Multiplayer Building Blocks provide integration with two popular multiplayer frameworks: [`Unity Netcode for Game Objects`](https://docs-multiplayer.unity3d.com/netcode/current/about/) and [`Photon Fusion 2`](https://doc.photonengine.com/fusion/current/fusion-intro).
 
 Both multiplayer frameworks are supported at parity with the exception of the Player Voice Chat block that is only available for Photon Fusion, which is the main reason why **`this MR Motif will be based on Photon Fusion 2`**. The underlying concept of this sample should be easily transferable to Unity Netcode.
-- [Meta Avatars SDK](https://assetstore.unity.com/packages/tools/integration/meta-avatars-sdk-271958) (`31.0.0`) - com.meta.xr.sdk.avatars
+- [Meta Avatars SDK](https://assetstore.unity.com/packages/tools/integration/meta-avatars-sdk-271958) (`38.0.1`) - com.meta.xr.sdk.avatars
+- [Meta Avatars SDK Sample Assets](https://assetstore.unity.com/packages/tools/integration/meta-avatars-sdk-sample-assets-272863) (`38.0.1`) - com.meta.xr.sdk.avatars.sample.assets: Required by Networked Avatar block to show a set of pre-set Meta Avatars in the editor when testing.
 > [!CAUTION]
-> The Avatar SDK is currently not compatible yet with OpenXR. If you are planning to use this sample, you will need to keep using the Oculus XR Plugin.
-- [Meta Avatars SDK Sample Assets](https://assetstore.unity.com/packages/tools/integration/meta-avatars-sdk-sample-assets-272863) (`31.0.0`) - com.meta.xr.sdk.avatars.sample.assets: Required by Networked Avatar block to show a set of pre-set Meta Avatars in the editor when testing.
-> [!CAUTION]
-> Building Blocks are currently not compatible with Avatars v33 or later. Avatars are not moving with the OVR Rig.
-- [Meta XR Platform SDK](https://assetstore.unity.com/packages/tools/integration/meta-xr-platform-sdk-262366) (`74.0.0`) - com.meta.xr.sdk.platform: Required by Player Name Tag and Networked Avatar blocks. Also required to retrieve data such as the player's avatar and name, as well as check the entitlement and connect to create group presence to use the friends invite feature.
-- [Meta XR Simulator](https://assetstore.unity.com/packages/tools/integration/meta-xr-simulator-266732) (`74.0.0`) - com.meta.xr.simulator
+> The Networked Avatar Building Block requires the **Avatars SDK Samples** to be installed. Go to Package Manager > Meta Avatars SDK > Open the "Samples" tab > import the samples.
+- [Meta XR Platform SDK](https://assetstore.unity.com/packages/tools/integration/meta-xr-platform-sdk-262366) (`78.0.0`) - com.meta.xr.sdk.platform: Required by Player Name Tag and Networked Avatar blocks. Also required to retrieve data such as the player's avatar and name, as well as check the entitlement and connect to create group presence to use the friends invite feature.
+- [Meta XR Simulator](https://assetstore.unity.com/packages/tools/integration/meta-xr-simulator-266732) (`78.0.0`) - com.meta.xr.simulator
   (Optional): For multiplayer testing without the need for many headsets.
-- [Photon Fusion](https://assetstore.unity.com/packages/tools/network/photon-fusion-267958) (`2.0.5`)
-- [Photon Voice](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518) (`2.57`)
+- [Photon Fusion](https://assetstore.unity.com/packages/tools/network/photon-fusion-267958) (`2.0.6`)
+- [Photon Voice](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518) (`2.59`)
 > [!TIP]
 > Make sure to go through the **[Import Photon Voice](https://doc.photonengine.com/voice/current/getting-started/voice-for-fusion)** setup guide.
 - [ParrelSync](https://github.com/VeriorPies/ParrelSync) (`1.5.2`)
@@ -192,9 +188,9 @@ Version 71 of the Meta XR Core SDK introduced the **[MRUK Raycast API](https://d
 
 ## Additional Requirements
 
-- [**Meta MR Utility Kit**](https://assetstore.unity.com/packages/tools/integration/meta-mr-utility-kit-272450) (`74.0.0`) - com.meta.xr.mrutilitykit
+- [**Meta MR Utility Kit**](https://assetstore.unity.com/packages/tools/integration/meta-mr-utility-kit-272450) (`78.0.0`) - com.meta.xr.mrutilitykit
 > [!TIP]
-> This sample runs with OpenXR. Simplz makes sure that, alongside the **OpenXR plugin**, you also install the Unity **OpenXR Meta plugin** (`com.unity.xr.meta-openxr@2.1.0-pre.1`). This is necessary for using the Depth API.
+> This sample runs with OpenXR. Simply make sure that, alongside the **OpenXR plugin**, you also install the Unity **OpenXR Meta plugin** extension. This is necessary for using the Depth API.
 
 ## How it works
 
@@ -254,9 +250,9 @@ Version 71 of the Meta XR Core SDK introduced the [Group-based anchor loading](h
 
 ## Additional Requirements
 
-- [**Meta MR Utility Kit**](https://assetstore.unity.com/packages/tools/integration/meta-mr-utility-kit-272450) (`74.0.0`) - com.meta.xr.mrutilitykit
-- [**Meta XR Platform SDK**](https://assetstore.unity.com/packages/tools/integration/meta-xr-platform-sdk-262366) (`74.0.0`) - com.meta.xr.sdk.platform
-- [**Photon Fusion**](https://assetstore.unity.com/packages/tools/network/photon-fusion-267958) (`2.0.5`)
+- [**Meta MR Utility Kit**](https://assetstore.unity.com/packages/tools/integration/meta-mr-utility-kit-272450) (`78.0.0`) - com.meta.xr.mrutilitykit
+- [**Meta XR Platform SDK**](https://assetstore.unity.com/packages/tools/integration/meta-xr-platform-sdk-262366) (`78.0.0`) - com.meta.xr.sdk.platform
+- [**Photon Fusion**](https://assetstore.unity.com/packages/tools/network/photon-fusion-267958) (`2.0.6`)
 
 ## Spatial Anchors
 An anchor is a world-locked frame of reference that gives a position and orientation to a virtual object in the real world. In this MR Motif, we demonstrate the whole lifecycle of a spatial anchor, from its creation to its persistence and retrieval. The project provides a [`Spatial Anchors folder`](./Assets/MRMotifs/ColocatedExperiences/Scripts/Spatial%20Anchors/), containing the [`SpatialAnchorManager`](./Assets/MRMotifs/ColocatedExperiences/Scripts/Spatial%20Anchors/SpatialAnchorManager.cs) class for creating, saving, and erasing spatial anchors, the [`SpatialAnchorLoader`](./Assets/MRMotifs/ColocatedExperiences/Scripts/Spatial%20Anchors/SpatialAnchorLoader.cs) class for loading previously saved anchors, and the static [`SpatialAnchorStorage`](./Assets/MRMotifs/ColocatedExperiences/Scripts/Spatial%20Anchors/SpatialAnchorStorage.cs) class For managing the anchor's UUIDs and saving them to the [`Unity PlayerPrefs`](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PlayerPrefs.html).
