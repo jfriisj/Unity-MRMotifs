@@ -13,9 +13,6 @@ namespace MRMotifs.ColocatedExperiences.BouncingBall
         [Tooltip("Projectile prefab with a NetworkObject component attached.")]
         [SerializeField] private NetworkObject projectilePrefab;
 
-        [Tooltip("Transform from where the projectile is spawned.")]
-        [SerializeField] private Transform firePoint;
-
         [Tooltip("Impulse force applied to the projectile.")]
         [SerializeField] private float fireForce = 1.0f;
         
@@ -23,11 +20,18 @@ namespace MRMotifs.ColocatedExperiences.BouncingBall
         [SerializeField] private float lifeTime = 5.0f;
 
         private bool m_spawned;
+        private Transform m_firePoint;
         private NetworkObject m_ballObject;
 
         public override void Spawned()
         {
             base.Spawned();
+            
+            if (Camera.main != null)
+            {
+                m_firePoint = Camera.main.transform;
+            }
+
             m_spawned = true;
         }
 
@@ -56,7 +60,7 @@ namespace MRMotifs.ColocatedExperiences.BouncingBall
 
         private void SpawnProjectile()
         {
-            m_ballObject = Runner.Spawn(projectilePrefab, firePoint.position, firePoint.rotation);
+            m_ballObject = Runner.Spawn(projectilePrefab, m_firePoint.position, m_firePoint.rotation);
 
             if (!m_ballObject)
             {
@@ -67,7 +71,7 @@ namespace MRMotifs.ColocatedExperiences.BouncingBall
             var rb = m_ballObject.GetComponent<Rigidbody>();
             if (rb)
             {
-                rb.AddForce(firePoint.forward * fireForce, ForceMode.Impulse);
+                rb.AddForce(m_firePoint.forward * fireForce, ForceMode.Impulse);
             }
             else
             {
