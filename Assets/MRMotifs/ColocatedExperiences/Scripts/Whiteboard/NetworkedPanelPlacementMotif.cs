@@ -1,6 +1,7 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 #if FUSION2
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,9 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         [SerializeField] private Transform rightRaycastAnchor;
         [SerializeField] private GameObject panelHighlight;
 
-        [Header("Input Settings Hands")]
+        [Header("Controller Input Settings")]
         [SerializeField] private OVRInput.RawButton leftGrabButton = OVRInput.RawButton.LHandTrigger;
         [SerializeField] private OVRInput.RawButton rightGrabButton = OVRInput.RawButton.RHandTrigger;
-
-        [Header("Input Settings Controllers")]
         [SerializeField] private OVRInput.RawAxis2D leftAxis = OVRInput.RawAxis2D.LThumbstick;
         [SerializeField] private OVRInput.RawAxis2D rightAxis = OVRInput.RawAxis2D.RThumbstick;
 
@@ -31,13 +30,10 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         [SerializeField] private OVRMicrogestureEventSource leftGestureSource;
         [SerializeField] private OVRMicrogestureEventSource rightGestureSource;
 
-        [Header("Manually Assigned OVRHand Objects")]
-        [Tooltip("Assign your actual left OVRHand here in the Inspector.")]
-        [SerializeField] private OVRHand leftHand;
-        [Tooltip("Assign your actual right OVRHand here in the Inspector.")]
-        [SerializeField] private OVRHand rightHand;
+        private OVRHand LeftHand => leftGestureSource ? leftGestureSource.Hand : null;
+        private OVRHand RightHand => rightGestureSource ? rightGestureSource.Hand : null;
 
-        [Header("Panel Settings")]
+        // Panel settings
         private const float PANEL_ASPECT_RATIO = 0.823f;
         private const float MIN_DISTANCE = 0.3f;
         private const float MAX_DISTANCE = 10f;
@@ -52,12 +48,15 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         private Pose? m_environmentPose;
         private bool m_isReady;
         private bool m_isGrabbing;
+        private bool m_isHandGrab;
         private float m_distanceFromController;
+
         private Transform m_panel;
         private Transform m_centerEyeAnchor;
         private Transform m_activeRaycastAnchor;
         private OVRInput.RawButton m_activeGrabButton;
         private OVRInput.RawAxis2D m_activeMoveAxis;
+
         private NetworkTransform m_networkTransform;
         private EnvironmentRaycastManager m_raycastManager;
         private readonly RollingAverage m_rollingAverageFilter = new();
@@ -65,7 +64,7 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         public override void Spawned()
         {
             base.Spawned();
-            if (Camera.main != null)
+            if (Camera.main)
             {
                 m_centerEyeAnchor = Camera.main.transform;
             }
@@ -73,15 +72,14 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
             m_panel = transform;
             m_raycastManager = FindAnyObjectByType<EnvironmentRaycastManager>();
 
-            if (leftGestureSource != null)
+            if (leftGestureSource)
             {
-                leftGestureSource.GestureRecognizedEvent.AddListener(gesture =>
-                    OnGestureRecognized(OVRPlugin.Hand.HandLeft, gesture));
+                leftGestureSource.GestureRecognizedEvent.AddListener(g => OnGestureRecognized(OVRPlugin.Hand.HandLeft, g));
             }
-            if (rightGestureSource != null)
+
+            if (rightGestureSource)
             {
-                rightGestureSource.GestureRecognizedEvent.AddListener(gesture =>
-                    OnGestureRecognized(OVRPlugin.Hand.HandRight, gesture));
+                rightGestureSource.GestureRecognizedEvent.AddListener(g => OnGestureRecognized(OVRPlugin.Hand.HandRight, g));
             }
 
             StartCoroutine(WaitForWhiteboardManager());
@@ -108,13 +106,13 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
 
             var leftHit = CheckPanelHitCombined(true);
             var rightHit = CheckPanelHitCombined(false);
-            panelHighlight.SetActive(leftHit || rightHit);
+            panelHighlight.SetActive((leftHit || rightHit) && !m_isGrabbing);
 
             if (m_isGrabbing)
             {
                 UpdateTargetPose();
 
-                if (OVRInput.GetUp(m_activeGrabButton))
+                if (!m_isHandGrab && OVRInput.GetUp(m_activeGrabButton))
                 {
                     EndGrabbing();
                 }
@@ -139,7 +137,7 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
                     if (OVRInput.GetDown(leftGrabButton))
                     {
                         Object.RequestStateAuthority();
-                        BeginGrabbing(leftRaycastAnchor, leftGrabButton, leftAxis, fromMicroGesture: false);
+                        BeginGrabbing(leftRaycastAnchor, leftGrabButton, leftAxis);
                     }
                 }
                 else if (rightHit)
@@ -154,7 +152,7 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
                     if (OVRInput.GetDown(rightGrabButton))
                     {
                         Object.RequestStateAuthority();
-                        BeginGrabbing(rightRaycastAnchor, rightGrabButton, rightAxis, fromMicroGesture: false);
+                        BeginGrabbing(rightRaycastAnchor, rightGrabButton, rightAxis);
                     }
                 }
             }
@@ -163,12 +161,11 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         }
 
         /// <summary>
-        /// Checks if the panel is hit by either the hand pointer (if available) OR the controller raycast.
-        /// Passing true means left side, false means right side.
+        /// Combined hover test: hand pointer (if tracked) OR that side's controller ray.
         /// </summary>
         private bool CheckPanelHitCombined(bool isLeftSide)
         {
-            var handRef = isLeftSide ? leftHand : rightHand;
+            var handRef = isLeftSide ? LeftHand : RightHand;
             var handIsTracked = (handRef && handRef.IsTracked && handRef.PointerPose);
 
             var handHit = false;
@@ -197,82 +194,57 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         }
 
         /// <summary>
-        /// Called by OVRMicrogestureEventSource for left and right hands.
+        /// Microgestures: NO hit-test. ThumbTap toggles grab anywhere; swipes move/scale.
+        /// Hand-grab movement is head-anchored to reduce jitter.
         /// </summary>
         private void OnGestureRecognized(OVRPlugin.Hand hand, OVRHand.MicrogestureType gesture)
         {
             var isLeft = (hand == OVRPlugin.Hand.HandLeft);
-            var handRef = isLeft ? leftHand : rightHand;
-            var anchor = m_centerEyeAnchor;
             var axis = isLeft ? leftAxis : rightAxis;
-            var grabButton = isLeft ? leftGrabButton : rightGrabButton;
+            var grabBtn = isLeft ? leftGrabButton : rightGrabButton;
 
-            if (!CheckPanelHitHand(handRef))
-            {
-                if (!CheckPanelHitController(anchor))
-                {
-                    return;
-                }
-            }
-            
             switch (gesture)
             {
                 case OVRHand.MicrogestureType.ThumbTap:
-                {
-                    switch (m_isGrabbing)
                     {
-                        case false when InteractionStateManagerMotif.Instance.CanManipulatePanel():
-                            Object.RequestStateAuthority();
-                            BeginGrabbing(anchor, grabButton, axis, fromMicroGesture: true);
-                            break;
-                        case true:
-                            EndGrabbing();
-                            break;
-                    }
-                    break;
-                }
+                        switch (m_isGrabbing)
+                        {
+                            case false when InteractionStateManagerMotif.Instance.CanManipulatePanel():
+                                Object.RequestStateAuthority();
+                                BeginGrabbing(m_centerEyeAnchor, grabBtn, axis);
+                                m_isHandGrab = true;
+                                break;
+                            case true when m_isHandGrab:
+                                EndGrabbing();
+                                break;
+                        }
 
+                        break;
+                    }
                 case OVRHand.MicrogestureType.SwipeLeft:
-                {
                     Object.RequestStateAuthority();
                     ScalePanel(-5f);
                     break;
-                }
-
                 case OVRHand.MicrogestureType.SwipeRight:
-                {
                     Object.RequestStateAuthority();
                     ScalePanel(5f);
                     break;
-                }
-
                 case OVRHand.MicrogestureType.SwipeForward:
-                {
                     Object.RequestStateAuthority();
                     AdjustDistance(SWIPE_MOVE_DISTANCE);
                     break;
-                }
-
                 case OVRHand.MicrogestureType.SwipeBackward:
-                {
                     Object.RequestStateAuthority();
                     AdjustDistance(-SWIPE_MOVE_DISTANCE);
                     break;
-                }
-
                 case OVRHand.MicrogestureType.NoGesture:
                 case OVRHand.MicrogestureType.Invalid:
-                default:
-                {
                     break;
-                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(gesture), gesture, null);
             }
         }
 
-        /// <summary>
-        /// Scales the panel up/down with a continuous factor.
-        /// Negative = scale down, positive = scale up.
-        /// </summary>
         private void ScalePanel(float scaleInput)
         {
             var currentScale = m_panel.localScale.x;
@@ -281,32 +253,20 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
             m_panel.localScale = new Vector3(newScale, newScale * PANEL_ASPECT_RATIO, 1f);
         }
 
-        /// <summary>
-        /// Adjusts the distance from the anchor by delta, then re-clamps.
-        /// This effectively moves the panel closer/farther from the user.
-        /// </summary>
         private void AdjustDistance(float delta)
         {
             m_distanceFromController += delta;
             m_distanceFromController = Mathf.Clamp(m_distanceFromController, MIN_DISTANCE, MAX_DISTANCE);
         }
 
-        /// <summary>
-        /// Begin grabbing the panel.
-        /// If fromMicroGesture=true, we skip re-initializing the distance so no jump occurs.
-        /// If from controller, we do recalc, so you can position precisely from the controller anchor.
-        /// </summary>
-        private void BeginGrabbing(Transform rayAnchor, OVRInput.RawButton grabButton, OVRInput.RawAxis2D moveAxis, bool fromMicroGesture = false)
+        private void BeginGrabbing(Transform rayAnchor, OVRInput.RawButton grabButton, OVRInput.RawAxis2D moveAxis)
         {
             m_isGrabbing = true;
             m_activeRaycastAnchor = rayAnchor;
             m_activeGrabButton = grabButton;
             m_activeMoveAxis = moveAxis;
 
-            if (!fromMicroGesture)
-            {
-                m_distanceFromController = Vector3.Distance(rayAnchor.position, m_panel.position);
-            }
+            m_distanceFromController = Vector3.Distance(m_activeRaycastAnchor.position, m_panel.position);
 
             panelHighlight.SetActive(false);
             InteractionStateManagerMotif.Instance.SetMode(InteractionMode.PanelManipulation);
@@ -315,6 +275,7 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
         private void EndGrabbing()
         {
             m_isGrabbing = false;
+            m_isHandGrab = false;
             m_targetPose = null;
             m_environmentPose = null;
             m_activeRaycastAnchor = null;
@@ -323,15 +284,22 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
 
         private void UpdateTargetPose()
         {
+            // Controllers: thumbstick adjusts distance while held.
+            // Hands: distance tweaks come from swipe forward/back; axis read harmless if anchor=head.
             var moveInput = OVRInput.Get(m_activeMoveAxis).y;
             m_distanceFromController += moveInput * MOVE_SPEED * Time.deltaTime;
             m_distanceFromController = Mathf.Clamp(m_distanceFromController, MIN_DISTANCE, MAX_DISTANCE);
 
-            var newEnvPose = TryGetEnvironmentPose(m_activeRaycastAnchor);
-            m_environmentPose = newEnvPose;
+            var tryEnv = (!m_isHandGrab) && m_activeRaycastAnchor;
+            m_environmentPose = tryEnv ? TryGetEnvironmentPose(m_activeRaycastAnchor) : null;
 
-            var manualPosition = m_activeRaycastAnchor.position + m_activeRaycastAnchor.forward * m_distanceFromController;
-            var manualForward = Vector3.ProjectOnPlane(m_centerEyeAnchor.position - manualPosition, Vector3.up).normalized;
+            // Manual target always anchored from the active anchor’s forward
+            var anchor = m_activeRaycastAnchor ? m_activeRaycastAnchor : m_centerEyeAnchor;
+            var manualPosition = anchor.position + anchor.forward * m_distanceFromController;
+
+            // Always face user horizontally
+            var manualForward = Vector3.ProjectOnPlane(m_centerEyeAnchor.position - manualPosition, Vector3.up).
+                normalized;
             var manualPose = new Pose(manualPosition, Quaternion.LookRotation(manualForward, Vector3.up));
 
             var chooseEnvPose = m_environmentPose.HasValue &&
@@ -361,7 +329,11 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
 
             if (isVerticalSurface)
             {
-                if (!m_raycastManager.PlaceBox(ray, panelSize, Vector3.up, out var result)) return null;
+                if (!m_raycastManager.PlaceBox(ray, panelSize, Vector3.up, out var result))
+                {
+                    return null;
+                }
+
                 var smoothedNormal = m_rollingAverageFilter.UpdateRollingAverage(result.normal);
                 return new Pose(result.point, Quaternion.LookRotation(smoothedNormal, Vector3.up));
             }
@@ -387,15 +359,8 @@ namespace MRMotifs.ColocatedExperiences.Whiteboard
                 return;
             }
 
-            m_panel.position = Vector3.Lerp(
-                m_panel.position,
-                m_targetPose.Value.position,
-                Time.deltaTime / SMOOTH_TIME);
-
-            m_panel.rotation = Quaternion.Slerp(
-                m_panel.rotation,
-                m_targetPose.Value.rotation,
-                Time.deltaTime / SMOOTH_TIME);
+            m_panel.position = Vector3.Lerp(m_panel.position, m_targetPose.Value.position, Time.deltaTime / SMOOTH_TIME);
+            m_panel.rotation = Quaternion.Slerp(m_panel.rotation, m_targetPose.Value.rotation, Time.deltaTime / SMOOTH_TIME);
         }
 
         private class RollingAverage

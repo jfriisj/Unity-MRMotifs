@@ -2,10 +2,11 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using Meta.XR.Samples;
 using System.Collections;
 using Oculus.Interaction;
 using System.Collections.Generic;
-using Meta.XR.Samples;
+using Meta.XR.MultiplayerBlocks.Fusion;
 using UnityEngine.SceneManagement;
 
 #if FUSION2
@@ -97,24 +98,133 @@ namespace MRMotifs.SharedAssets
 
         private void LoadScene(int sceneIndex)
         {
+            if (sceneIndex < 0 || sceneIndex >= sceneNames.Count)
+            {
+                Debug.LogError($"[MenuPanel] Invalid scene index: {sceneIndex}. Valid range: 0-{sceneNames.Count - 1}");
+                return;
+            }
 #if FUSION2
-        var networkRunner = FindAnyObjectByType<NetworkRunner>();
-        if (networkRunner != null && networkRunner.IsSceneAuthority)
+            var networkRunner = FindAnyObjectByType<NetworkRunner>();
+
+            if (networkRunner != null)
+            {
+                StartCoroutine(ShutdownFusionAndLoadScene(sceneIndex));
+                return;
+            }
+#endif
+            StartCoroutine(LoadSceneAsync(sceneNames[sceneIndex]));
+        }
+
+#if FUSION2
+        private IEnumerator ShutdownFusionAndLoadScene(int sceneIndex)
         {
-            Debug.LogError($"Unloading multiplayer scene with active NetworkRunner");
-            networkRunner.UnloadScene(SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex));
-            networkRunner.Shutdown();
+            var networkRunner = FindAnyObjectByType<NetworkRunner>();
+
+            if (networkRunner)
+            {
+                if (!networkRunner.IsRunning)
+                {
+                    Debug.LogWarning("[MenuPanel] NetworkRunner is not running - may already be shutting down");
+                }
+
+                const int MAX_WAIT_FRAMES = 300;
+                try
+                {
+                    var shutdownTask = networkRunner.Shutdown();
+                    var frameCount = 0;
+
+                    while (!shutdownTask.IsCompleted && frameCount < MAX_WAIT_FRAMES)
+                    {
+                        frameCount++;
+                    }
+
+                    if (frameCount >= MAX_WAIT_FRAMES)
+                    {
+                        Debug.LogWarning(
+                            $"[MenuPanel] Shutdown timed out after {MAX_WAIT_FRAMES} frames - forcing scene load");
+                    }
+
+                    if (shutdownTask.IsCompleted)
+                    {
+                        if (shutdownTask.IsFaulted)
+                        {
+                            Debug.LogError($"[MenuPanel] Fusion shutdown failed: {shutdownTask.Exception}");
+                            // Continue anyway - we'll force cleanup
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError($"[MenuPanel] Exception during shutdown: {ex}");
+                }
+
+                try
+                {
+                    var customProvider = FindAnyObjectByType<CustomNetworkObjectProvider>();
+                    if (customProvider)
+                    {
+                        var registryField =
+                            typeof(CustomNetworkObjectProvider).GetField("_customNetworkObjects",
+                                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (registryField != null)
+                        {
+                            var registry = registryField.GetValue(customProvider);
+                            if (registry is IDictionary dict)
+                            {
+                                dict.Clear();
+                            }
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError($"[MenuPanel] Error clearing custom registrations: {ex}");
+                }
+
+                yield return new WaitForSeconds(0.2f);
+
+                var runnerStillExists = FindAnyObjectByType<NetworkRunner>();
+                if (runnerStillExists)
+                {
+                    try
+                    {
+                        DestroyImmediate(runnerStillExists.gameObject);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError($"[MenuPanel] Error destroying NetworkRunner: {ex}");
+                    }
+                }
+
+                var remainingProviders = FindObjectsByType<CustomNetworkObjectProvider>(FindObjectsSortMode.None);
+                foreach (var t in remainingProviders)
+                {
+                    if (t)
+                    {
+                        DestroyImmediate(t.gameObject);
+                    }
+                }
+
+                yield return null;
+            }
+            else
+            {
+                Debug.LogWarning("[MenuPanel] NetworkRunner was null when coroutine started!");
+            }
+
+            yield return StartCoroutine(LoadSceneAsync(sceneNames[sceneIndex]));
         }
 #endif
-            if (sceneIndex >= 0 && sceneIndex < sceneNames.Count)
-            {
-                StartCoroutine(LoadSceneAsync(sceneNames[sceneIndex]));
-            }
-        }
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
             var asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+            if (asyncLoad == null)
+            {
+                Debug.LogError($"[MenuPanel] Failed to start async load for scene: {sceneName}");
+                yield break;
+            }
+
             while (asyncLoad is { isDone: false })
             {
                 yield return null;

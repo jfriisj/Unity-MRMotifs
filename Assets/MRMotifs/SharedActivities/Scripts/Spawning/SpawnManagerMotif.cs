@@ -43,15 +43,14 @@ namespace MRMotifs.SharedActivities.Spawning
         [Networked, Capacity(8)]
         private NetworkArray<PlayerRef> QueuedPlayers => default;
 
-        [Tooltip("The player's camera rig that will be positioned at spawn locations.")] [SerializeField]
-        private Transform cameraRig;
-
-        [Tooltip("The object in the scene that avatars will interact with or face.")] [SerializeField]
+        [Tooltip("The object in the scene that avatars will interact with or face.")]
+        [SerializeField]
         private GameObject objectOfInterest;
 
         public GameObject ObjectOfInterest => objectOfInterest;
 
         public bool HasSpawned { get; private set; }
+        private Transform m_cameraRig;
 
         public override void Spawned()
         {
@@ -164,10 +163,11 @@ namespace MRMotifs.SharedActivities.Spawning
                 return;
             }
 
-            cameraRig.position = location;
-            var directionToLook = objectOfInterest.transform.position - cameraRig.position;
+            m_cameraRig = FindAnyObjectByType<OVRCameraRig>().transform;
+            m_cameraRig.position = location;
+            var directionToLook = objectOfInterest.transform.position - m_cameraRig.position;
             directionToLook.y = 0;
-            cameraRig.rotation = Quaternion.LookRotation(directionToLook);
+            m_cameraRig.rotation = Quaternion.LookRotation(directionToLook);
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

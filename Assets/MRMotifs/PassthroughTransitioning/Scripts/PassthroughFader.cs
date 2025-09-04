@@ -56,10 +56,6 @@ namespace MRMotifs.PassthroughTransitioning
             FaderState.InTransition;
 
         [Header("Passthrough Fader Settings")]
-        [Tooltip("The passthrough layer used for the fade effect.")]
-        [SerializeField]
-        private OVRPassthroughLayer oVRPassthroughLayer;
-
         [Tooltip("Select Underlay to fade the entire view or Selective for a limited sphere.")]
         [SerializeField]
         private PassthroughViewingMode passthroughViewingMode = PassthroughViewingMode.Selective;
@@ -94,6 +90,7 @@ namespace MRMotifs.PassthroughTransitioning
         [SerializeField]
         private UnityEvent onFadeOutComplete = new();
 
+        private OVRPassthroughLayer m_oVRPassthroughLayer;
         private Camera m_mainCamera;
         private Material m_material;
         private MeshRenderer m_meshRenderer;
@@ -127,7 +124,8 @@ namespace MRMotifs.PassthroughTransitioning
                 m_passthroughButton.onClick.AddListener(TogglePassthrough);
             }
 
-            oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
+            m_oVRPassthroughLayer = FindAnyObjectByType<OVRPassthroughLayer>();
+            m_oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
 
             SetupPassthrough();
 
@@ -143,7 +141,7 @@ namespace MRMotifs.PassthroughTransitioning
                 m_passthroughButton.onClick.RemoveListener(TogglePassthrough);
             }
 
-            oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
+            m_oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
         }
 
         /// <summary>
@@ -188,7 +186,7 @@ namespace MRMotifs.PassthroughTransitioning
             }
             else
             {
-                oVRPassthroughLayer.enabled = false;
+                m_oVRPassthroughLayer.enabled = false;
                 m_mainCamera.clearFlags = CameraClearFlags.Skybox;
                 m_mainCamera.backgroundColor = m_skyboxBackgroundColor;
                 m_material.SetFloat(s_invertedAlpha, 0);
@@ -219,7 +217,7 @@ namespace MRMotifs.PassthroughTransitioning
                     break;
 
                 case FaderState.VR:
-                    oVRPassthroughLayer.enabled = true;
+                    m_oVRPassthroughLayer.enabled = true;
                     onStartFadeIn?.Invoke();
                     break;
 
@@ -282,7 +280,7 @@ namespace MRMotifs.PassthroughTransitioning
             }
             else
             {
-                oVRPassthroughLayer.enabled = false;
+                m_oVRPassthroughLayer.enabled = false;
                 if (passthroughViewingMode == PassthroughViewingMode.Underlay)
                 {
                     m_mainCamera.clearFlags = CameraClearFlags.Skybox;
