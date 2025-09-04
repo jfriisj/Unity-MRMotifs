@@ -122,3 +122,6 @@ Assets/MetaXR
 Assets/MetaXR.meta
 Assets/MetaXR/MetaXRProjectSettings.assets
 Assets/MetaXR/MetaXRProjectSettings.assets.meta
+Assets/Samples/Meta Avatars SDK/*
+Assets/Samples/Meta Avatars SDK.meta
+Assets/Samples.meta
