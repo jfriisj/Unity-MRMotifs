@@ -77,9 +77,9 @@ This script demonstrates how to check if [passthrough is recommended](https://de
 
 The Fade Speed and Fade Direction can be adjusted. The same goes for the `Selective Distance` in `Selective Passthrough mode`, which limits virtual content visibility within a set range. This is useful for tabletop games or interactions requiring focus on surroundings. The [`PassthroughFader`](./Assets/MRMotifs/PassthroughTransitioning/Scripts/PassthroughFader.cs) class includes four Unity Events that notify when fade-in and fade-out start and complete, useful for triggering actions like playing an audio clip.
 
-### PassthroughFaderSlider and PassthroughDissolver classes
+### PassthroughDissolver
 
-The project contains a **[`PassthroughFaderSlider`](./Assets/MRMotifs/PassthroughTransitioning/Scripts/PassthroughFaderSlider.cs)** script, similar to `PassthroughFader`, but allowing manual fading via a slider. It also demonstrates turning off the guardian when a threshold is crossed. The **[`PassthroughDissolver`](./Assets/MRMotifs/PassthroughTransitioning/Scripts/PassthroughDissolver.cs)** works similarly but adjusts the dissolve level instead of the inverted alpha value.
+The project also demonstrates turning off the guardian when a threshold is crossed. The **[`PassthroughDissolver`](./Assets/MRMotifs/PassthroughTransitioning/Scripts/PassthroughDissolver.cs)** works similarly but adjusts the dissolve level instead of the inverted alpha value.
 
 Other scripts in the Passthrough Transitioning samples:
 - **[`AudioController`](./Assets/MRMotifs/PassthroughTransitioning/Scripts/AudioController.cs)** reads the inverted alpha value and adjusts volume.
