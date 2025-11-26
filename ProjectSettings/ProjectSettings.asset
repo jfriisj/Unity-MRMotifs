@@ -145,6 +145,9 @@ PlayerSettings:
   bundleVersion: 0.6
   preloadedAssets:
   - {fileID: 0}
+  - {fileID: 11400000, guid: cbe7c11806caa434f831cc51058a2bde, type: 2}
+  - {fileID: 11400000, guid: 405f47e09cecde14bbed65efa665d8b5, type: 2}
+  - {fileID: -944628639613478452, guid: 340ea7ca76e2c994a90d06cd455e1aee, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -422,7 +425,7 @@ PlayerSettings:
   - m_BuildTarget: iOSSupport
     m_GraphicsJobs: 0
   - m_BuildTarget: WindowsStandaloneSupport
-    m_GraphicsJobs: 0
+    m_GraphicsJobs: 1
   - m_BuildTarget: XboxOnePlayer
     m_GraphicsJobs: 1
   - m_BuildTarget: LuminSupport
@@ -437,6 +440,8 @@ PlayerSettings:
   - m_BuildTarget: XboxOnePlayer
     m_GraphicsJobMode: 0
   - m_BuildTarget: AndroidPlayer
+    m_GraphicsJobMode: 1
+  - m_BuildTarget: WindowsStandaloneSupport
     m_GraphicsJobMode: 1
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: AndroidPlayer
@@ -760,26 +765,26 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: FUSION_WEAVER;FUSION2;PHOTON_VOICE_DEFINED;FUSION_LOGLEVEL_INFO
-    EmbeddedLinux: PHOTON_VOICE_DEFINED
-    GameCoreScarlett: PHOTON_VOICE_DEFINED
-    GameCoreXboxOne: PHOTON_VOICE_DEFINED
-    Kepler: PHOTON_VOICE_DEFINED
-    LinuxHeadlessSimulation: PHOTON_VOICE_DEFINED
-    Nintendo Switch: PHOTON_VOICE_DEFINED
-    Nintendo Switch 2: PHOTON_VOICE_DEFINED
-    PS4: PHOTON_VOICE_DEFINED
-    PS5: PHOTON_VOICE_DEFINED
-    QNX: PHOTON_VOICE_DEFINED
-    ReservedCFE: PHOTON_VOICE_DEFINED
-    Stadia: PHOTON_VOICE_DEFINED
-    Standalone: PHOTON_VOICE_DEFINED
-    VisionOS: PHOTON_VOICE_DEFINED
-    WebGL: PHOTON_VOICE_DEFINED
-    Windows Store Apps: PHOTON_VOICE_DEFINED
-    XboxOne: PHOTON_VOICE_DEFINED
-    iPhone: PHOTON_VOICE_DEFINED
-    tvOS: PHOTON_VOICE_DEFINED
+    Android: FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;FUSION_2;FUSION_2_0;FUSION_2_0_8;FUSION_2_OR_NEWER;FUSION_2_0_OR_NEWER
+    EmbeddedLinux: 
+    GameCoreScarlett: 
+    GameCoreXboxOne: 
+    Kepler: 
+    LinuxHeadlessSimulation: 
+    Nintendo Switch: 
+    Nintendo Switch 2: 
+    PS4: 
+    PS5: 
+    QNX: 
+    ReservedCFE: 
+    Stadia: 
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;FUSION_WEAVER;FUSION2;FUSION_2;FUSION_2_0;FUSION_2_0_8;FUSION_2_OR_NEWER;FUSION_2_0_OR_NEWER;FUSION_LOGLEVEL_INFO
+    VisionOS: 
+    WebGL: 
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
+    XboxOne: 
+    iPhone: 
+    tvOS: 
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

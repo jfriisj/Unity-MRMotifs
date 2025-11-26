@@ -1,0 +1,57 @@
+% \section{Description of the industrial challenge}
+% Describe what your industrial challenge is and why it is important.
+
+% Developing a Multi-User VR System for Shared Physical Spaces
+\section{Introduction}
+
+Virtual Reality (VR) training systems have demonstrated significant potential for professional education, particularly in safety-critical domains such as emergency medical services~\cite{SchildJonas2018E—Ev}, maintenance operations~\cite{HeinonenHanna2022EtBo}, and crisis response~\cite{SharmaSharad2025IASR}. However, most existing multi-user VR solutions address scenarios where users connect from geographically distributed locations~\cite{VanDammeSam2024Iolo}, leaving a critical gap in systems designed for co-located training where multiple users share the same physical space. This distinction is not merely technical—co-located training enables real-world teamwork dynamics, immediate physical assistance between trainees, and authentic spatial coordination that remote systems cannot replicate.
+
+Standalone wireless VR headsets, particularly the Meta Quest 3, present unprecedented opportunities for co-located multi-user training, eliminating cable-related usability issues that caused 66.7\% of users to rate tethered systems poorly~\cite{SchildJonas2018E—Ev}. However, co-located systems introduce unique challenges achieving calibration accuracy to prevent user collisions~\cite{ReimerDennis2021CfSV}, maintaining low network latency~\cite{VanDammeSam2024Iolo}, providing spatial awareness interfaces~\cite{ChenLei2024Eoep}, and ensuring visual consistency across headsets~\cite{WeissYannick2025ItEo}.
+
+While enterprise VR rooms (e.g., Virtualware's VIROO) demonstrate commercial viability, their high costs (\$50,000+) limit accessibility. This work addresses the need for an \textbf{affordable, portable 3-user co-located VR system} using consumer-grade Quest 3 headsets ($\approx$\$500 each), delivering enterprise training capabilities at 15--20\% of traditional costs while solving co-location challenges: collision prevention~\cite{ReimerDennis2021CfSV}, spatial awareness~\cite{ChenLei2024Eoep}, and millimeter-accurate avatar alignment.
+
+
+
+
+\subsection{Motivation and Significance}
+
+Professional training in safety-critical domains demands realistic, repeatable, and scalable practice. Traditional high-fidelity training rigs are costly and logistically heavy, limiting frequent practice and team-based drills~\cite{SharmaSharad2025IASR}. Consumer wireless headsets (e.g., Quest 3) promise orders-of-magnitude cost reduction, but only if they meet evidence-based technical benchmarks: precise calibration (\textless10mm) for collision avoidance~\cite{ReimerDennis2021CfSV}, low end-to-end latency to preserve shared action timing ~\cite{VanDammeSam2024Iolo}, and spatial interfaces (WIM) to support multi-user awareness and coordination~\cite{ChenLei2024Eoep}. Visual consistency across participants is also critical—mismatches degrade collaborative performance~\cite{WeissYannick2025ItEo}. This study directly targets those gaps by validating a low-cost, 3-user co-located configuration and measuring learning, safety, and usability outcomes to determine whether consumer hardware can safely and effectively replace pricier simulators.
+
+\section{Research Questions}
+
+This study employs the PICO (Population, Intervention, Comparison, Outcome) framework to structure research questions:
+
+\begin{itemize}
+    \item \textbf{P (Population):} Training professionals and students in educational environments
+    \item \textbf{I (Intervention):} Co-located multi-user VR systems (3 Meta Quest 3 headsets in shared physical space)
+    \item \textbf{C (Comparison):} Remote multi-user VR systems, traditional training methods
+    \item \textbf{O (Outcomes):} Task performance, collaboration effectiveness, user safety metrics
+\end{itemize}
+
+\noindent Based on this framework, we formulate the following research questions:
+
+\begin{description}
+    \item[RQ1:] How does a 3-user co-located Quest 3 VR system achieve safety-critical technical benchmarks during 30--60 minute training sessions?
+    
+    \item[RQ2:] How does collaboration effectiveness in co-located multi-user VR compare to remote multi-user VR configurations?
+    
+    \item[RQ3:] What is the relationship between spatial awareness interface design (WIM) and collaborative task performance in co-located 3-user configurations?
+
+    \item[RQ4:] What is the technical performance stability (frame rate consistency, calibration drift, network latency variance) of wireless co-located VR across extended sessions?
+\end{description}
+% \subsection{Case Description Enterprise}
+
+% VR rooms are transforming physical spaces into shared multi-user VR environments where teams can train together, with companies like Virtualware deploying over 32 VIROO Rooms worldwide for industries from railways to military training. However, most solutions require expensive custom installations. This project aims to develop an affordable VR system that enables multiple users to share the same physical room while collaborating in a virtual environment. Unlike typical multi-user VR platforms where users connect from different locations, this system addresses the unique challenges of co-located users. Students will identify potential customers in training facilities, educational labs, or team-building venues who could benefit from shared-space VR experiences. 
+
+% \subsection{Challenge}
+
+% The main challenge is creating a stable multi-user VR system where 3 users can operate in the same physical  room.  While  controllers  are  paired  to  individual  headsets  so  there's  no  signal  mixing, students must investigate whether Meta Quest 3's inside-out tracking handles multiple headsets in close proximity without interference. The system needs to manage shared physical boundaries, prevent collisions between users who can't see each other, and ensure virtual avatars properly align with users' actual positions. Students must implement basic networking to synchronize the virtual environment while maintaining awareness of real-world space constraints. They will identify which specific use cases benefit from users being physically co-located versus remotely connected. 
+
+% \subsection{Keywords}
+% Virtual Reality, Co-located VR, Shared Physical Space, Multi-user Systems, Unity 
+
+
+% \subsection{Tools, methods and materials}
+
+% The project will involve programming in C\# and working with Unity development. Students will use Unity's built-in Netcode for GameObjects networking solution along with VR frameworks like XR Interaction  Toolkit  or OpenXR.  Development  will  focus  on  solving  the  technical  and  safety challenges of multiple headsets operating in the same room. Three Meta Quest 3s will be provided for testing and development. Code management through GitHub with demonstrations throughout the semester. 
+

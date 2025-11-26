@@ -1,0 +1,96 @@
+\section{Experimental Prototype}
+
+This section describes the implementation of the 3-user co-located VR training system using Meta Quest 3 headsets.
+
+\subsection{Hardware Configuration}
+
+The experimental testbed consists of:
+
+\begin{itemize}
+    \item \textbf{Headsets:} 3$\times$ Meta Quest 3 (Snapdragon XR2 Gen 2, 8GB RAM)
+    \begin{itemize}
+        \item Resolution: 2064$\times$2208 per eye
+        \item Refresh rate: 90Hz (target), 72Hz (fallback)
+        \item Tracking: Inside-out 6DoF with 4 wide-angle cameras
+        \item Hand tracking: Optical tracking without controllers
+    \end{itemize}
+    
+    \item \textbf{Network Infrastructure:}
+    \begin{itemize}
+        \item WiFi 6E access point (6GHz band, 160MHz channels)
+        \item Dedicated router with QoS configuration
+        \item Isolated network segment for minimal interference
+    \end{itemize}
+    
+    \item \textbf{Physical Space:} 6m $\times$ 6m padded training area with Guardian boundaries
+\end{itemize}
+
+\subsection{Software Architecture}
+
+The system is built on Unity 2022.3 LTS with the following components:
+
+\begin{itemize}
+    \item \textbf{Meta XR SDK v81.0.0:} Core VR functionality, hand tracking, passthrough
+    \item \textbf{Photon Fusion 2.0.8:} State synchronization networking framework
+    \item \textbf{Universal Render Pipeline (URP):} Performance-optimized rendering
+    \item \textbf{Custom Building Blocks:}
+    \begin{itemize}
+        \item Colocation Manager: Spatial alignment and calibration
+        \item SSA Manager: Shared spatial anchors for persistent world
+        \item Avatar synchronization with NetworkBehaviour
+        \item WIM interface implementation
+    \end{itemize}
+\end{itemize}
+
+\subsection{Calibration Protocol}
+
+Hand tracking-based alignment procedure:
+
+\begin{enumerate}
+    \item Each user places hands at three predefined spatial markers
+    \item System captures 3D positions from each headset's coordinate frame
+    \item Procrustes analysis computes optimal rigid transformation
+    \item Validation measures Euclidean error at marker positions
+    \item Target: $<10$mm accuracy (Reimer et al.~\cite{ReimerDennis2021CfSV})
+\end{enumerate}
+
+Real-time tracking quality monitoring triggers recalibration when accuracy degrades below threshold.
+
+\subsection{Training Scenarios}
+
+Three scenarios of progressive complexity:
+
+\begin{description}
+    \item[Scenario 1: Basic] Simple object manipulation and spatial coordination. Single shared task requiring turn-taking. Low network traffic, minimal rendering complexity.
+    
+    \item[Scenario 2: Medium] Multi-step procedures requiring verbal communication and spatial awareness. Multiple interactive objects, moderate avatar movement. WIM interface provides overhead tactical view.
+    
+    \item[Scenario 3: Complex] Time-critical emergency response simulation. Simultaneous parallel tasks, high coordination demands, complex spatial reasoning. Tests system limits under maximum load.
+\end{description}
+
+\subsection{World-in-Miniature (WIM) Interface}
+
+The WIM spatial awareness tool provides:
+
+\begin{itemize}
+    \item Real-time 3D miniature representation of training environment
+    \item Live avatar positions and orientations
+    \item Interactive camera control (pan, zoom, rotate)
+    \item Task-relevant object highlighting
+    \item Wrist-mounted for continuous availability
+\end{itemize}
+
+Implementation based on Chen et al.'s~\cite{ChenLei2024Eoep} design principles, scaled to 1:10 environment ratio for optimal spatial comprehension.
+
+\subsection{Data Collection}
+
+Automated logging systems capture:
+
+\begin{itemize}
+    \item \textbf{Technical metrics:} Frame rate, frame time, network RTT, packet loss, device temperature (1Hz sampling)
+    \item \textbf{Calibration data:} 3D tracking accuracy at marker positions (pre/mid/post session)
+    \item \textbf{Task performance:} Completion time, error counts, success/failure, coordination events
+    \item \textbf{Subjective measures:} Spatial awareness scores (post-task questionnaire)
+\end{itemize}
+
+All data timestamped and synchronized across headsets for correlation analysis.
