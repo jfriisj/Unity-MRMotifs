@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 239815509}
-  - component: {fileID: 239815508}
+  - component: {fileID: 239815510}
   m_Layer: 0
   m_Name: MetricsLogger
   m_TagString: Untagged
@@ -539,26 +539,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &239815508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239815507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4f8e2a9c3b4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableMetricsLogging: 1
-  logInterval: 1
-  participantCount: 3
-  scenario: colocated_experience
-  interfaceType: baseline
-  roomTemperature: 22.5
-  roomHumidity: 45
-  lightingCondition: good
 --- !u!4 &239815509
 Transform:
   m_ObjectHideFlags: 0
@@ -574,6 +554,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239815510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239815507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4f8e2a9c3b4d5e6f7a8b9c0d1e2f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableMetricsLogging: 1
+  logInterval: 1
+  autoSaveInterval: 300
+  maxMetricsInMemory: 10000
+  participantCount: 3
+  scenario: colocated_experience
+  interfaceType: baseline
+  roomTemperature: 22.5
+  roomHumidity: 45
+  lightingCondition: good
 --- !u!1 &329565322
 GameObject:
   m_ObjectHideFlags: 0

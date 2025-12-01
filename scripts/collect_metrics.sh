@@ -116,8 +116,17 @@ EOF
     # Count files collected
     CSV_COUNT=$(find "${DEVICE_DIR}" -name "*.csv" 2>/dev/null | wc -l)
     JSON_COUNT=$(find "${DEVICE_DIR}" -name "*.json" 2>/dev/null | wc -l)
+    PART_COUNT=$(find "${DEVICE_DIR}" -name "*part*.csv" 2>/dev/null | wc -l)
     
-    echo -e "${GREEN}  ✓ Collected ${CSV_COUNT} CSV files and ${JSON_COUNT} JSON files from H${DEVICE_NUM}${NC}"
+    if [ $CSV_COUNT -eq 0 ]; then
+        echo -e "${YELLOW}  ⚠ Warning: No CSV files found for H${DEVICE_NUM}${NC}"
+        echo "    Make sure MetricsLogger is enabled and the app has been running."
+    else
+        echo -e "${GREEN}  ✓ Collected ${CSV_COUNT} CSV files and ${JSON_COUNT} JSON files from H${DEVICE_NUM}${NC}"
+        if [ $PART_COUNT -gt 0 ]; then
+            echo "    Found ${PART_COUNT} incremental part files (auto-saved data)"
+        fi
+    fi
     echo ""
 done
 
@@ -132,17 +141,40 @@ Devices Collected: ${#DEVICES[@]}
 Files Collected:
 EOF
 
+TOTAL_CSV=0
+TOTAL_JSON=0
+TOTAL_PARTS=0
+
 for i in "${!DEVICES[@]}"; do
     DEVICE_NUM=$((i+1))
     DEVICE_DIR="${OUTPUT_DIR}/H${DEVICE_NUM}"
     if [ -d "$DEVICE_DIR" ]; then
         CSV_COUNT=$(find "${DEVICE_DIR}" -name "*.csv" 2>/dev/null | wc -l)
         JSON_COUNT=$(find "${DEVICE_DIR}" -name "*.json" 2>/dev/null | wc -l)
+        PART_COUNT=$(find "${DEVICE_DIR}" -name "*part*.csv" 2>/dev/null | wc -l)
+        
+        TOTAL_CSV=$((TOTAL_CSV + CSV_COUNT))
+        TOTAL_JSON=$((TOTAL_JSON + JSON_COUNT))
+        TOTAL_PARTS=$((TOTAL_PARTS + PART_COUNT))
+        
         echo "  H${DEVICE_NUM}: ${CSV_COUNT} CSV, ${JSON_COUNT} JSON" >> "$SUMMARY_FILE"
+        if [ $PART_COUNT -gt 0 ]; then
+            echo "         (${PART_COUNT} incremental part files)" >> "$SUMMARY_FILE"
+        fi
+        
+        # List actual files
+        echo "    Files:" >> "$SUMMARY_FILE"
+        find "${DEVICE_DIR}" -name "*.csv" -o -name "*.json" 2>/dev/null | while read file; do
+            basename "$file" | sed 's/^/      - /' >> "$SUMMARY_FILE"
+        done
     fi
 done
 
 echo "" >> "$SUMMARY_FILE"
+echo "Total: ${TOTAL_CSV} CSV files, ${TOTAL_JSON} JSON files" >> "$SUMMARY_FILE"
+if [ $TOTAL_PARTS -gt 0 ]; then
+    echo "Note: ${TOTAL_PARTS} files are incremental parts (need merging for full session data)" >> "$SUMMARY_FILE"
+fi
 echo "Total Size: $(du -sh "$OUTPUT_DIR" | cut -f1)" >> "$SUMMARY_FILE"
 
 # Display summary
@@ -151,7 +183,20 @@ cat "$SUMMARY_FILE"
 echo ""
 echo "Data saved to: ${OUTPUT_DIR}"
 echo ""
+
+# Check if there are incremental part files
+if [ $TOTAL_PARTS -gt 0 ]; then
+    echo -e "${YELLOW}Note: Found ${TOTAL_PARTS} incremental part files (from auto-saves)${NC}"
+    echo "These files contain non-overlapping data segments."
+    echo ""
+fi
+
 echo "Next steps:"
 echo "  1. Review the collected CSV files in each H* directory"
-echo "  2. Run analysis: python scripts/analyze_metrics.py ${OUTPUT_DIR}"
-echo "  3. Check device_info.txt and battery_info.txt for device status"
+if [ $TOTAL_PARTS -gt 0 ]; then
+    echo "  2. Merge incremental parts: python scripts/merge_metrics.py ${OUTPUT_DIR}"
+    echo "  3. Run analysis: python scripts/analyze_metrics.py ${OUTPUT_DIR}"
+else
+    echo "  2. Run analysis: python scripts/analyze_metrics.py ${OUTPUT_DIR}"
+fi
+echo "  $([ $TOTAL_PARTS -gt 0 ] && echo '4' || echo '3'). Check device_info.txt and battery_info.txt for device status"

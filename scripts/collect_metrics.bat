@@ -94,11 +94,24 @@ for /l %%i in (1,1,%DEVICE_COUNT%) do (
     echo   Collecting battery stats...
     "%ADB_PATH%" -s !SERIAL! shell dumpsys battery > "!DEVICE_DIR!\battery_info.txt" 2>nul
     
+    REM Count collected files
+    set CSV_COUNT=0
+    for %%f in ("!DEVICE_DIR!\*.csv") do set /a CSV_COUNT+=1
+    set JSON_COUNT=0
+    for %%f in ("!DEVICE_DIR!\*.json") do set /a JSON_COUNT+=1
+    
+    if !CSV_COUNT!==0 (
+        echo   Warning: No CSV files found for H%%i
+        echo   Make sure MetricsLogger is enabled and the app has been running.
+    ) else (
+        echo   Collected !CSV_COUNT! CSV and !JSON_COUNT! JSON files
+    )
+    
     echo   Done with H%%i
     echo.
 )
 
-REM Create collection summary
+REM Create collection summary with file listings
 set "SUMMARY_FILE=%OUTPUT_DIR%\collection_summary.txt"
 (
     echo === Metrics Collection Summary ===
@@ -106,15 +119,53 @@ set "SUMMARY_FILE=%OUTPUT_DIR%\collection_summary.txt"
     echo Collection Time: %date% %time%
     echo Devices Collected: %DEVICE_COUNT%
     echo.
-    echo Data saved to: %OUTPUT_DIR%
+    echo Files Collected:
 ) > "%SUMMARY_FILE%"
+
+REM Add file counts per device
+for /l %%i in (1,1,%DEVICE_COUNT%) do (
+    set "DEVICE_DIR=%OUTPUT_DIR%\H%%i"
+    if exist "!DEVICE_DIR!" (
+        echo   H%%i: >> "%SUMMARY_FILE%"
+        dir /b "!DEVICE_DIR!\*.csv" 2>nul | find /c /v "" > temp_count.txt
+        set /p CSV_COUNT=<temp_count.txt
+        dir /b "!DEVICE_DIR!\*.json" 2>nul | find /c /v "" > temp_count.txt
+        set /p JSON_COUNT=<temp_count.txt
+        echo     !CSV_COUNT! CSV files, !JSON_COUNT! JSON files >> "%SUMMARY_FILE%"
+        echo     Files: >> "%SUMMARY_FILE%"
+        for %%f in ("!DEVICE_DIR!\*.csv" "!DEVICE_DIR!\*.json") do (
+            if exist "%%f" echo       - %%~nxf >> "%SUMMARY_FILE%"
+        )
+        del temp_count.txt 2>nul
+    )
+)
+
+echo. >> "%SUMMARY_FILE%"
+echo Data saved to: %OUTPUT_DIR% >> "%SUMMARY_FILE%"
 
 echo === Collection Complete ===
 type "%SUMMARY_FILE%"
 echo.
+
+REM Check for incremental part files
+set HAS_PARTS=0
+for /r "%OUTPUT_DIR%" %%f in (*part*.csv) do set HAS_PARTS=1
+
+if %HAS_PARTS%==1 (
+    echo Note: Found incremental part files ^(from auto-saves^)
+    echo These files contain non-overlapping data segments.
+    echo.
+)
+
 echo Next steps:
 echo   1. Review the collected CSV files in each H* directory
-echo   2. Check device_info.txt and battery_info.txt for device status
-echo   3. Run analysis script if available
+if %HAS_PARTS%==1 (
+    echo   2. Merge incremental parts: python scripts\merge_metrics.py %OUTPUT_DIR%
+    echo   3. Run analysis: python scripts\analyze_metrics.py %OUTPUT_DIR%
+    echo   4. Check device_info.txt and battery_info.txt for device status
+) else (
+    echo   2. Run analysis: python scripts\analyze_metrics.py %OUTPUT_DIR%
+    echo   3. Check device_info.txt and battery_info.txt for device status
+)
 echo.
 pause

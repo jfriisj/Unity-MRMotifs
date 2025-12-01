@@ -55,6 +55,8 @@ namespace MRMotifs.SharedAssets
         [Header("Metrics Configuration")]
         [SerializeField] private bool enableMetricsLogging = true;
         [SerializeField] private float logInterval = 1.0f; // Log every 1 second
+        [SerializeField] private float autoSaveInterval = 300f; // Auto-save every 5 minutes
+        [SerializeField] private int maxMetricsInMemory = 10000; // Prevent memory overflow
         [SerializeField] private int participantCount = 3;
         [SerializeField] private string scenario = "colocated_experience";
         [SerializeField] private string interfaceType = "baseline";
@@ -68,9 +70,12 @@ namespace MRMotifs.SharedAssets
 
         private List<TechnicalMetric> metrics = new List<TechnicalMetric>();
         private float lastLogTime;
+        private float lastAutoSaveTime;
         private int currentSessionId;
+        private int saveCounter = 0;
         private DateTime sessionStartTime;
         private string metricsDirectory;
+        private string deviceSerial;
 
 #if FUSION2
         private NetworkRunner cachedRunner;
@@ -106,7 +111,9 @@ namespace MRMotifs.SharedAssets
             // Initialize session
             currentSessionId = PlayerPrefs.GetInt("SessionID", 1);
             sessionStartTime = DateTime.Now;
-            lastLogTime = Time.time;
+            lastLogTime = Time.realtimeSinceStartup;
+            lastAutoSaveTime = Time.realtimeSinceStartup;
+            deviceSerial = GetDeviceSerial();
 
             // Create persistent data directory
             metricsDirectory = Path.Combine(Application.persistentDataPath, "metrics");
@@ -126,10 +133,30 @@ namespace MRMotifs.SharedAssets
             if (!enableMetricsLogging)
                 return;
 
-            if (Time.time - lastLogTime >= logInterval)
+            float currentTime = Time.realtimeSinceStartup;
+
+            // Regular metric logging
+            if (currentTime - lastLogTime >= logInterval)
             {
                 LogMetric();
-                lastLogTime = Time.time;
+                lastLogTime = currentTime;
+
+                // Check memory limit
+                if (metrics.Count >= maxMetricsInMemory)
+                {
+                    Debug.LogWarning($"[MetricsLogger] Memory limit reached ({maxMetricsInMemory}). Forcing save.");
+                    SaveMetricsNow();
+                    metrics.Clear();
+                }
+            }
+
+            // Periodic auto-save
+            if (currentTime - lastAutoSaveTime >= autoSaveInterval)
+            {
+                Debug.Log($"[MetricsLogger] Auto-save triggered after {autoSaveInterval}s.");
+                SaveMetricsNow();
+                metrics.Clear(); // Clear after auto-save to prevent duplication
+                lastAutoSaveTime = currentTime;
             }
         }
 
@@ -139,7 +166,7 @@ namespace MRMotifs.SharedAssets
             {
                 sessionId = currentSessionId,
                 participantCount = participantCount,
-                timestamp = Time.time,
+                timestamp = Time.realtimeSinceStartup,
                 frameRate = 1.0f / Time.deltaTime,
                 frameTime = Time.deltaTime * 1000f,
                 networkLatency = GetNetworkLatency(),
@@ -152,7 +179,15 @@ namespace MRMotifs.SharedAssets
                 memoryUsageMB = GetMemoryUsage()
             };
 
-            metrics.Add(metric);
+            // Validate metric data
+            if (ValidateMetric(metric))
+            {
+                metrics.Add(metric);
+            }
+            else
+            {
+                Debug.LogWarning($"[MetricsLogger] Invalid metric detected and skipped at timestamp {metric.timestamp:F2}s");
+            }
 
             // Optional: Log to console for debugging (can be disabled for performance)
             // Debug.Log($"[MetricsLogger] FPS: {metric.frameRate:F1}, Latency: {metric.networkLatency:F1}ms, Calib: {metric.calibrationError:F2}mm");
@@ -249,14 +284,21 @@ namespace MRMotifs.SharedAssets
 
         private void SaveMetricsToCSV()
         {
+            if (metrics.Count == 0)
+            {
+                Debug.LogWarning("[MetricsLogger] No metrics to save.");
+                return;
+            }
+
             string headsetId = GetHeadsetID();
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string filename = $"session_{currentSessionId}_H{headsetId}_{timestamp}.csv";
+            saveCounter++;
+            string filename = $"session_{currentSessionId}_H{headsetId}_part{saveCounter:D3}_{timestamp}.csv";
             string filepath = Path.Combine(metricsDirectory, filename);
 
             try
             {
-                using (StreamWriter writer = new StreamWriter(filepath))
+                using (StreamWriter writer = new StreamWriter(filepath, append: false))
                 {
                     // Write header
                     writer.WriteLine("session_id,participant_count,timestamp_sec,frame_rate_fps,frame_time_ms,network_latency_ms,packet_loss_pct,calibration_error_mm,headset_temp_c,battery_level_pct,battery_temp_c,cpu_usage_pct,memory_usage_mb");
@@ -271,7 +313,7 @@ namespace MRMotifs.SharedAssets
                     }
                 }
 
-                Debug.Log($"[MetricsLogger] Metrics saved to: {filepath}");
+                Debug.Log($"[MetricsLogger] {metrics.Count} metrics saved to: {filepath}");
             }
             catch (Exception e)
             {
@@ -301,7 +343,7 @@ namespace MRMotifs.SharedAssets
 
             string headsetId = GetHeadsetID();
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string filename = $"session_{currentSessionId}_H{headsetId}_metadata_{timestamp}.json";
+            string filename = $"session_{currentSessionId}_H{headsetId}_metadata_part{saveCounter:D3}_{timestamp}.json";
             string filepath = Path.Combine(metricsDirectory, filename);
 
             try
@@ -318,6 +360,14 @@ namespace MRMotifs.SharedAssets
 
         private string GetHeadsetID()
         {
+            // Use cached device serial if available
+            if (!string.IsNullOrEmpty(deviceSerial))
+            {
+                // Extract last 4 characters as ID
+                if (deviceSerial.Length >= 4)
+                    return deviceSerial.Substring(deviceSerial.Length - 4);
+            }
+
             // Try to determine headset ID from device name
             string deviceName = SystemInfo.deviceName;
 
@@ -326,7 +376,7 @@ namespace MRMotifs.SharedAssets
             if (deviceName.Contains("2")) return "2";
             if (deviceName.Contains("3")) return "3";
 
-            // Default to device serial number hash if no identifier found
+            // Default to device unique identifier hash
             string deviceId = SystemInfo.deviceUniqueIdentifier;
             if (!string.IsNullOrEmpty(deviceId) && deviceId.Length >= 4)
             {
@@ -430,6 +480,82 @@ namespace MRMotifs.SharedAssets
         }
 
         /// <summary>
+        /// Get device serial number (Android only)
+        /// </summary>
+        private string GetDeviceSerial()
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            try
+            {
+                using (AndroidJavaClass buildClass = new AndroidJavaClass("android.os.Build"))
+                {
+                    string serial = buildClass.GetStatic<string>("SERIAL");
+                    if (!string.IsNullOrEmpty(serial) && serial != "unknown")
+                    {
+                        Debug.Log($"[MetricsLogger] Device serial: {serial}");
+                        return serial;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[MetricsLogger] Failed to get device serial: {e.Message}");
+            }
+#endif
+            return SystemInfo.deviceUniqueIdentifier;
+        }
+
+        /// <summary>
+        /// Validate metric data for unrealistic values
+        /// </summary>
+        private bool ValidateMetric(TechnicalMetric metric)
+        {
+            // Frame rate validation (10-200 FPS reasonable range)
+            if (metric.frameRate < 10f || metric.frameRate > 200f)
+            {
+                Debug.LogWarning($"[MetricsLogger] Unrealistic FPS: {metric.frameRate:F1}");
+                return false;
+            }
+
+            // Network latency validation (0-5000ms reasonable range)
+            if (metric.networkLatency < 0f || metric.networkLatency > 5000f)
+            {
+                Debug.LogWarning($"[MetricsLogger] Unrealistic network latency: {metric.networkLatency:F1}ms");
+                return false;
+            }
+
+            // Calibration error validation (0-1000mm reasonable range)
+            if (metric.calibrationError < 0f || metric.calibrationError > 1000f)
+            {
+                Debug.LogWarning($"[MetricsLogger] Unrealistic calibration error: {metric.calibrationError:F2}mm");
+                return false;
+            }
+
+            // Temperature validation (0-80°C reasonable range for device)
+            if (metric.headsetTemp < 0f || metric.headsetTemp > 80f)
+            {
+                Debug.LogWarning($"[MetricsLogger] Unrealistic temperature: {metric.headsetTemp:F1}°C");
+                return false;
+            }
+
+            // Battery level validation (0-100%)
+            if (metric.batteryLevel < 0 || metric.batteryLevel > 100)
+            {
+                Debug.LogWarning($"[MetricsLogger] Invalid battery level: {metric.batteryLevel}%");
+                return false;
+            }
+
+            // Memory usage validation (should be positive)
+            if (metric.memoryUsageMB < 0f)
+            {
+                Debug.LogWarning($"[MetricsLogger] Invalid memory usage: {metric.memoryUsageMB:F1}MB");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Manually trigger metrics save (useful for testing or mid-session saves)
         /// </summary>
         public void SaveMetricsNow()
@@ -439,7 +565,7 @@ namespace MRMotifs.SharedAssets
 
             SaveMetricsToCSV();
             SaveSessionMetadata();
-            Debug.Log("[MetricsLogger] Manual metrics save triggered.");
+            Debug.Log($"[MetricsLogger] Manual metrics save triggered. Saved {metrics.Count} metrics.");
         }
 
         /// <summary>
