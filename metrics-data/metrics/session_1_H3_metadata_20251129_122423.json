@@ -1,0 +1,13 @@
+{
+    "sessionId": 1,
+    "date": "2025-11-29",
+    "startTime": "12:21:07",
+    "endTime": "12:24:23",
+    "durationMinutes": 3,
+    "scenario": "colocated_experience",
+    "interfaceType": "baseline",
+    "roomTempStart": 22.5,
+    "roomTempEnd": 22.5,
+    "humidity": 45,
+    "lighting": "good"
+}

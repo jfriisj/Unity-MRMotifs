@@ -26,18 +26,18 @@ This guide provides step-by-step instructions for collecting technical performan
 
 **Hardware:**
 - 3× Meta Quest 3 headsets (fully charged)
-- WiFi 6E router/access point (dedicated 6GHz channel)
-- Development PC with Unity 2022.3 LTS
+- WiFi router/access point (802.11ac or newer recommended)
+- Development PC with Unity 6000.0.62f1
 - USB-C cables for headset connection (3×)
-- Measuring tape or laser distance meter
-- Spatial markers (for calibration points)
 
 **Software:**
-- Unity 2022.3 LTS with Android Build Support
-- Meta XR SDK v78.0.0+
-- Photon Fusion 2.0.8
+- Unity 6000.0.62f1 with Android Build Support
+- Meta XR SDK v81.0.0
+- Photon Fusion 1.1.0
 - ADB (Android Debug Bridge)
 - Python 3.8+ with pandas, numpy, matplotlib (for analysis)
+
+**Note:** This guide describes the technical capabilities of the MetricsLogger system. No formal user studies have been conducted. This is a technical demonstration prototype.
 
 **Physical Space:**
 - 6m × 6m clear area (minimum)
@@ -104,12 +104,12 @@ Humidity: _____%
 
 ## Network Configuration
 
-### WiFi 6E Setup
+### WiFi Setup
 
 **Router Configuration:**
-1. Use dedicated 6GHz channel (149-165 recommended)
-2. Channel Width: 160 MHz
-3. Enable QoS with highest priority for VR traffic
+1. Use 5GHz band (802.11ac or 802.11ax/WiFi 6)
+2. Channel Width: 80 MHz or 160 MHz (if supported)
+3. Enable QoS with highest priority for VR traffic (if available)
 4. Disable band steering and automatic channel selection
 5. Set static DHCP reservations for headsets
 
@@ -302,65 +302,72 @@ adb -s <H3_SERIAL> install -r YourApp.apk
 
 ### Initial Calibration (Pre-Session)
 
-**Setup Calibration Points:**
-1. Place three physical markers in the play area:
-   - Point 1: Center of play area (0, 0, 0)
-   - Point 2: 2m North of center (0, 0, 2)
-   - Point 3: 2m East of center (2, 0, 0)
+**Spatial Anchor-Based Calibration:**
 
-2. Measure exact positions with laser distance meter
-3. Record ground truth coordinates
+The system uses Meta's OVR Colocation Discovery API with shared spatial anchors for automatic alignment, rather than manual calibration points.
 
-**Calibration Steps (Perform on Each Headset):**
+**Calibration Steps:**
 
 1. **Launch Application** on all three headsets
-2. **Select "Calibration Mode"** from main menu
-3. **For each headset sequentially:**
-   ```
-   Instruction: "User 1, place both hands at Point 1"
-   → Record 3D position from hand tracking
-   → Repeat for Points 2 and 3
-   → Calculate transformation matrix
-   ```
+2. **Host Device (H1):**
+   - Creates spatial anchor at designated alignment point
+   - Advertises anchor via Bluetooth Low Energy
+   - System generates shared anchor UUID
 
-4. **Validation:**
-   - System displays calibration error for each point
-   - Target: <10mm per point
-   - If error >10mm, recalibrate
+3. **Guest Devices (H2, H3):**
+   - Discover anchor advertisement
+   - Retrieve shared anchor UUID
+   - Localize to the same spatial reference frame
+
+4. **Automatic Alignment:**
+   - ColocationManager aligns camera rigs to anchor transform
+   - System calculates alignment error as Euclidean distance from anchor
+   - Continuous monitoring of spatial correspondence
+
+5. **Validation:**
+   - System displays calibration error for each headset
+   - Target: <10mm alignment error (literature benchmark)
+   - If error >10mm, retry anchor localization
 
 **Record Initial Calibration Data:**
 ```
 Session ID: _____
 Date/Time: _____
-Scenario: [ ] Basic [ ] Medium [ ] Complex
+Demo Scenario: [ ] ColocationDiscovery [ ] SpaceSharing [ ] SpatialAnchorsBasics
 
-Headset 1:
-  Point 1: X=____ Y=____ Z=____ Error=____mm
-  Point 2: X=____ Y=____ Z=____ Error=____mm
-  Point 3: X=____ Y=____ Z=____ Error=____mm
-  Mean Error: ____mm
+Spatial Anchor:
+  UUID: _____
+  Position: X=____ Y=____ Z=____
+  Created by: H1 (Host)
 
-Headset 2:
-  Point 1: X=____ Y=____ Z=____ Error=____mm
-  Point 2: X=____ Y=____ Z=____ Error=____mm
-  Point 3: X=____ Y=____ Z=____ Error=____mm
-  Mean Error: ____mm
+Headset 1 (Host):
+  Alignment Error: ____mm
+  Anchor Distance: ____mm
+  Localization Status: [ ] Success [ ] Failed
 
-Headset 3:
-  Point 1: X=____ Y=____ Z=____ Error=____mm
-  Point 2: X=____ Y=____ Z=____ Error=____mm
-  Point 3: X=____ Y=____ Z=____ Error=____mm
-  Mean Error: ____mm
+Headset 2 (Guest):
+  Alignment Error: ____mm
+  Anchor Distance: ____mm
+  Localization Status: [ ] Success [ ] Failed
+
+Headset 3 (Guest):
+  Alignment Error: ____mm
+  Anchor Distance: ____mm
+  Localization Status: [ ] Success [ ] Failed
+
+Mean Alignment Error: ____mm
 ```
 
-### Mid-Session Recalibration (Every 45 Minutes)
+### Mid-Session Recalibration (If Needed)
 
-If session exceeds 45 minutes:
-1. Pause training scenario
-2. Trigger recalibration routine
-3. Users repeat hand placement procedure
-4. Record updated calibration errors
-5. Resume training
+If alignment error increases >10mm:
+1. Pause demo scenario
+2. Trigger re-localization to shared anchor
+3. System re-aligns camera rigs to anchor transform
+4. Verify updated alignment errors
+5. Resume demo
+
+**Note:** Spatial anchor persistence should maintain alignment, but environmental factors (lighting changes, tracking quality) may require re-localization.
 
 ---
 
@@ -405,11 +412,10 @@ Time ____ : Recalibration triggered
 
 ### Collaboration Metrics
 
-**Task Performance Data** (record per task):
+**Demo Performance Data** (record per scenario):
 ```
-Task ID: _____
-Interface Type: [ ] Baseline [ ] WIM
-Scenario Complexity: [ ] Basic [ ] Medium [ ] Complex
+Demo Scenario: [ ] ColocationDiscovery [ ] SpaceSharing [ ] SpatialAnchorsBasics
+Complexity: [ ] Basic [ ] Medium [ ] Complex
 
 Start Time: _____
 End Time: _____
@@ -425,10 +431,10 @@ Task Success: [ ] Complete [ ] Failed [ ] Partial
 Communication Events: _____
   - Verbal instructions: _____
   - Gestures: _____
-  - WIM interface usage: _____
+  - Spatial coordination: _____
 
-Spatial Awareness Score (1-10): _____
-  Observer assessment of team spatial coordination
+Observer Notes: _____
+  Assessment of demo scenario execution and interaction quality
 ```
 
 ### Performance Overlay (Live Monitoring)
@@ -510,9 +516,9 @@ data/
     "lighting": "good"
   },
   "network": {
-    "router": "WiFi 6E - 6GHz",
-    "channel": 149,
-    "bandwidth": "160MHz"
+    "router": "WiFi 5/6 - 5GHz",
+    "channel": "auto",
+    "bandwidth": "80MHz"
   },
   "incidents": [
     {"time": "14:45:00", "type": "tracking_loss", "headset": "H2", "duration_sec": 3},
@@ -671,10 +677,10 @@ def plot_session_metrics(df, session_id):
 **Issue: Headset Not Connecting to Network**
 ```
 Solution:
-1. Verify WiFi 6E is enabled on headset
-2. Check router 6GHz band is active
+1. Verify 5GHz WiFi is enabled on headset
+2. Check router 5GHz band is active
 3. Forget network and reconnect
-4. Verify correct password and security (WPA3)
+4. Verify correct password and security (WPA2/WPA3)
 5. Check DHCP reservation is active
 ```
 
@@ -691,11 +697,12 @@ Solution:
 **Issue: Calibration Error >10mm**
 ```
 Solution:
-1. Improve lighting conditions for hand tracking
+1. Improve lighting conditions for spatial tracking
 2. Clean headset cameras
 3. Recalibrate Guardian boundaries
-4. Ensure markers are precisely positioned
-5. Use controller-based calibration if hand tracking fails
+4. Ensure play area has sufficient visual features
+5. Re-create spatial anchor in more feature-rich location
+6. Trigger re-localization on affected headset
 ```
 
 **Issue: FPS Drops Below 85**
@@ -850,12 +857,12 @@ session_id,participant_count,timestamp_sec,frame_rate_fps,frame_time_ms,network_
 ...
 ```
 
-### Collaboration Performance CSV Format
+### Demo Performance CSV Format
 
 ```csv
-session_id,scenario,interface_type,task_completion_time_sec,coordination_errors,communication_events,task_success,spatial_awareness_score
-1,scenario_basic,baseline,285,3,42,1,6.2
-2,scenario_medium,wim,356,3,61,1,8.1
+session_id,demo_scenario,completion_time_sec,coordination_events,communication_events,demo_success,observer_notes
+1,ColocationDiscovery,285,3,42,1,"Successful anchor sharing and discovery"
+2,SpaceSharing,356,2,38,1,"Room anchor synchronization worked well"
 ...
 ```
 
@@ -870,6 +877,8 @@ session_id,headset_id,calibration_point,x_error_mm,y_error_mm,z_error_mm,total_e
 
 ---
 
-**Version:** 1.0  
-**Last Updated:** November 26, 2025  
+**Version:** 2.0  
+**Last Updated:** December 1, 2025  
 **Authors:** Unity-MRMotifs Research Team
+
+**Disclaimer:** This guide describes technical capabilities of the MetricsLogger system for future validation studies. The prototype has NOT been tested with formal user studies. All procedures are designed for future empirical research with IRB approval.

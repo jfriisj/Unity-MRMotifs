@@ -1,0 +1,76 @@
+{
+  "session_id": "demo",
+  "date": "2025-02-01",
+  "start_time": "14:00:00",
+  "end_time": "14:20:00",
+  "duration_minutes": 20,
+  "demo_scenario": "ColocationDiscovery",
+  "participants": [
+    {
+      "id": 1,
+      "headset": "H1",
+      "role": "Host",
+      "serial": "1WMHH812345"
+    },
+    {
+      "id": 2,
+      "headset": "H2",
+      "role": "Guest",
+      "serial": "1WMHH823456"
+    },
+    {
+      "id": 3,
+      "headset": "H3",
+      "role": "Guest",
+      "serial": "1WMHH834567"
+    }
+  ],
+  "environment": {
+    "room_temperature_start": 22.0,
+    "room_temperature_end": 23.5,
+    "humidity": 45,
+    "lighting": "good"
+  },
+  "network": {
+    "router": "WiFi 6 - 5GHz",
+    "channel": "auto",
+    "bandwidth": "80MHz"
+  },
+  "spatial_anchor": {
+    "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "position": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "created_by": "H1"
+  },
+  "calibration_events": [
+    {
+      "timestamp": "14:00:00",
+      "type": "initial_calibration",
+      "all_headsets": true
+    },
+    {
+      "timestamp": "14:10:00",
+      "type": "recalibration",
+      "headset": "H2",
+      "reason": "drift_threshold"
+    }
+  ],
+  "incidents": [
+    {
+      "time": "14:05:23",
+      "type": "network_spike",
+      "headset": "H1",
+      "latency_ms": 48.2
+    },
+    {
+      "time": "14:10:00",
+      "type": "recalibration_triggered",
+      "headset": "H2",
+      "error_mm": 10.1
+    }
+  ],
+  "notes": "MOCK DATA - Demonstrates expected system performance based on literature benchmarks. Not from actual user study."
+}

@@ -1,30 +1,16 @@
+% % \section{State of the art}
+% % % Describe what others have done to solve the same industrial challenge. Provide references.
+
+
 \section{State of the art}
 % Describe what others have done to solve the same industrial challenge. Provide references.
 
-Van Damme et al.~\cite{VanDammeSam2024Iolo} demonstrated that latency critically affects collaborative VR quality of experience (QoE): $\leq 75$ms RTT provides good collaboration, while $>300$ms causes severe degradation ($p<0.001$). Co-located systems using WiFi 6E can achieve $<30$ms latency, but Quest 3 validation is needed.
+Van Damme et al.~\cite{VanDammeSam2024Iolo} demonstrated that latency critically affects collaborative VR quality of experience (QoE): $\leq 75$ms RTT provides good collaboration, while $>300$ms causes severe degradation ($p<0.001$). Co-located systems using local WiFi networking can achieve low latency, but Quest 3 validation with Photon Fusion is needed.
 
-Reimer et al.~\cite{ReimerDennis2021CfSV} compared calibration methods for Quest devices, finding hand tracking achieved best accuracy ($\sim$10mm error) without additional hardware. This establishes the safety-critical threshold for collision prevention. However, only 2 Quest 1 devices were tested; Quest 3 validation with three headsets over 30--60 minute sessions remains unaddressed.
+Reimer et al.~\cite{ReimerDennis2021CfSV} compared calibration methods for Meta Quest devices, finding hand tracking achieved best accuracy ($\sim$10mm error) without additional hardware. This establishes the safety-critical threshold for collision prevention. However, only 2 Quest 1 devices were tested; Quest 3 validation with three headsets over 30--60 minute sessions remains unaddressed.
 
 Chen et al.~\cite{ChenLei2024Eoep} evaluated World-in-Miniature (WIM) interfaces (n=36), demonstrating significant improvements over 2D maps ($p<0.05$) for collaborative tasks. WIM effectiveness increases with task complexity, but 3-user co-located configurations are unexplored.
 
 Weiss et al.~\cite{WeissYannick2025ItEo} showed visual consistency across headsets is essential—asymmetric representations significantly degrade collaborative performance (n=30). Co-located systems require symmetric views and $<10$mm calibration to maintain consistency.
 
 Schild et al.~\cite{SchildJonas2018E—Ev} evaluated paramedic VR training (n=24), revealing 66.7\% rated tethered systems with poor usability (SUS $<70$) due to cables. Strong correlations emerged between usability and presence ($r=0.73$, $p<0.001$ for experienced realism). Wireless headsets should dramatically improve these metrics.
-
-\subsection{Evidence-Based Requirements}
-
-\begin{table}[h]
-\centering
-\caption{Evidence-Based Technical Requirements}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Requirement} & \textbf{Target} & \textbf{Source} \\
-\hline
-Calibration & $<10$mm & \cite{ReimerDennis2021CfSV} \\
-Latency & $\leq 75$ms & \cite{VanDammeSam2024Iolo} \\
-Frame Rate & $\geq 90$ fps & \cite{SchildJonas2018E—Ev} \\
-Spatial UI & WIM & \cite{ChenLei2024Eoep} \\
-Usability & SUS $>70$ & \cite{SchildJonas2018E—Ev} \\
-\hline
-\end{tabular}
-\end{table}

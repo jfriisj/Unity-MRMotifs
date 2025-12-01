@@ -1,3 +1,63 @@
+% \section{Experimental prototype}
+% Describe the specific use-case you worked with and the experimental prototype you have built.
+
+% \subsection{Equations}
+% This is an equation:
+% \begin{equation}
+% a+b=\gamma\label{eq}
+% \end{equation}
+
+% \begin{table}[htbp]
+% \caption{This is a table}
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+% \textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+% \cline{2-4} 
+% \textbf{Head} & \textbf{Table column subhead}& \textbf{Subhead}& \textbf{Subhead} \\
+% \hline
+% text & text & text & text \\
+% \hline
+% \end{tabular}
+% \label{tab1}
+% \end{center}
+% \end{table}
+
+% \begin{figure}[htbp]
+% % \centerline{\includegraphics{fig1.png}}
+% \caption{Example of a figure caption.}
+% \label{fig}
+% \end{figure}
+% \section{Experimental prototype}
+% Describe the specific use-case you worked with and the experimental prototype you have built.
+
+% \subsection{Equations}
+% This is an equation:
+% \begin{equation}
+% a+b=\gamma\label{eq}
+% \end{equation}
+
+% \begin{table}[htbp]
+% \caption{This is a table}
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+% \textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+% \cline{2-4} 
+% \textbf{Head} & \textbf{Table column subhead}& \textbf{Subhead}& \textbf{Subhead} \\
+% \hline
+% text & text & text & text \\
+% \hline
+% \end{tabular}
+% \label{tab1}
+% \end{center}
+% \end{table}
+
+% \begin{figure}[htbp]
+% % \centerline{\includegraphics{fig1.png}}
+% \caption{Example of a figure caption.}
+% \label{fig}
+% \end{figure}
 \section{Experimental Prototype}
 
 This section describes the implementation of the 3-user co-located VR training system using Meta Quest 3 headsets.
@@ -7,90 +67,71 @@ This section describes the implementation of the 3-user co-located VR training s
 The experimental testbed consists of:
 
 \begin{itemize}
-    \item \textbf{Headsets:} 3$\times$ Meta Quest 3 (Snapdragon XR2 Gen 2, 8GB RAM)
+    \item \textbf{Headsets:} 3$\times$ Meta Quest 3
     \begin{itemize}
-        \item Resolution: 2064$\times$2208 per eye
-        \item Refresh rate: 90Hz (target), 72Hz (fallback)
-        \item Tracking: Inside-out 6DoF with 4 wide-angle cameras
         \item Hand tracking: Optical tracking without controllers
     \end{itemize}
     
     \item \textbf{Network Infrastructure:}
     \begin{itemize}
-        \item WiFi 6E access point (6GHz band, 160MHz channels)
+        \item WiFi access point
         \item Dedicated router with QoS configuration
-        \item Isolated network segment for minimal interference
     \end{itemize}
     
-    \item \textbf{Physical Space:} 6m $\times$ 6m padded training area with Guardian boundaries
+    %\item \textbf{Physical Space:} 6m $\times$ 6m padded training area with Guardian boundaries
 \end{itemize}
 
 \subsection{Software Architecture}
 
-The system is built on Unity 2022.3 LTS with the following components:
+The system is built on Unity 6000.0.62f1 with the following components:
 
 \begin{itemize}
     \item \textbf{Meta XR SDK v81.0.0:} Core VR functionality, hand tracking, passthrough
-    \item \textbf{Photon Fusion 2.0.8:} State synchronization networking framework
+    \item \textbf{Photon Fusion 1.1.0:} State synchronization networking framework
     \item \textbf{Universal Render Pipeline (URP):} Performance-optimized rendering
     \item \textbf{Custom Building Blocks:}
     \begin{itemize}
         \item Colocation Manager: Spatial alignment and calibration
         \item SSA Manager: Shared spatial anchors for persistent world
         \item Avatar synchronization with NetworkBehaviour
-        \item WIM interface implementation
+        \item MetricsLogger: Performance monitoring and CSV export
     \end{itemize}
 \end{itemize}
 
 \subsection{Calibration Protocol}
 
-Hand tracking-based alignment procedure:
+Spatial anchor-based alignment procedure:
 
 \begin{enumerate}
-    \item Each user places hands at three predefined spatial markers
-    \item System captures 3D positions from each headset's coordinate frame
-    \item Procrustes analysis computes optimal rigid transformation
-    \item Validation measures Euclidean error at marker positions
-    \item Target: $<10$mm accuracy (Reimer et al.~\cite{ReimerDennis2021CfSV})
+    \item Host creates and shares spatial anchor using OVR Colocation Discovery API
+    \item Guest devices discover and localize the shared anchor
+    \item ColocationManager aligns each camera rig to anchor transform
+    \item System calculates alignment error as Euclidean distance from anchor position
+    \item Calibration error is continuously tracked and logged via MetricsLogger
 \end{enumerate}
 
-Real-time tracking quality monitoring triggers recalibration when accuracy degrades below threshold.
+The system uses Meta's OVRSpatialAnchor API for alignment rather than manual hand tracking calibration, providing automatic spatial correspondence between co-located users.
 
-\subsection{Training Scenarios}
+\subsection{Demo Scenarios}
 
-Three scenarios of progressive complexity:
+Three colocation demonstration scenes:
 
 \begin{description}
-    \item[Scenario 1: Basic] Simple object manipulation and spatial coordination. Single shared task requiring turn-taking. Low network traffic, minimal rendering complexity.
+    \item \textbf{ColocationDiscovery}: Demonstrates OVR Colocation Discovery API with shared spatial anchor creation, advertisement, discovery, and alignment between multiple headsets.
     
-    \item[Scenario 2: Medium] Multi-step procedures requiring verbal communication and spatial awareness. Multiple interactive objects, moderate avatar movement. WIM interface provides overhead tactical view.
+    \item \textbf{SpaceSharing}: Shows MRUK room sharing and colocation using spatial anchors to synchronize physical environment understanding across users.
     
-    \item[Scenario 3: Complex] Time-critical emergency response simulation. Simultaneous parallel tasks, high coordination demands, complex spatial reasoning. Tests system limits under maximum load.
+    \item \textbf{SpatialAnchorsBasics}: Basic spatial anchor creation, persistence, and loading functionality.
 \end{description}
-
-\subsection{World-in-Miniature (WIM) Interface}
-
-The WIM spatial awareness tool provides:
-
-\begin{itemize}
-    \item Real-time 3D miniature representation of training environment
-    \item Live avatar positions and orientations
-    \item Interactive camera control (pan, zoom, rotate)
-    \item Task-relevant object highlighting
-    \item Wrist-mounted for continuous availability
-\end{itemize}
-
-Implementation based on Chen et al.'s~\cite{ChenLei2024Eoep} design principles, scaled to 1:10 environment ratio for optimal spatial comprehension.
 
 \subsection{Data Collection}
 
-Automated logging systems capture:
+The MetricsLogger system captures:
 
 \begin{itemize}
-    \item \textbf{Technical metrics:} Frame rate, frame time, network RTT, packet loss, device temperature (1Hz sampling)
-    \item \textbf{Calibration data:} 3D tracking accuracy at marker positions (pre/mid/post session)
-    \item \textbf{Task performance:} Completion time, error counts, success/failure, coordination events
-    \item \textbf{Subjective measures:} Spatial awareness scores (post-task questionnaire)
+    \item \textbf{Technical metrics:} Frame rate, frame time, network RTT via Photon Fusion, calibration error from ColocationManager (1Hz sampling)
+    \item \textbf{Device metrics:} Battery level, battery temperature, estimated CPU usage, memory usage
+    \item \textbf{Session metadata:} Scenario type, interface type, environmental conditions, duration
 \end{itemize}
 
-All data timestamped and synchronized across headsets for correlation analysis.
+Metrics are logged to CSV files with session metadata in JSON format, stored in the device's persistent data path for later retrieval and analysis.

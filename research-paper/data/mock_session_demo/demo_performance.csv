@@ -1,0 +1,3 @@
+session_id,demo_scenario,completion_time_sec,anchor_creation_time_sec,anchor_discovery_time_sec,coordination_events,communication_events,demo_success,observer_notes,room_anchor_sync_time_sec,shared_geometry_loaded
+demo,ColocationDiscovery,330,2.3,4.1,5,12,True,Successful anchor sharing,,
+demo,SpaceSharing,465,,,8,18,True,Room anchor synchronization successful,3.8,True

@@ -1,87 +1,86 @@
 \section{Approach}
 % Describe your approach and solution. And describe how your solution is different (e.g. more robust, cheaper, user friendly, ecological, etc.)
 
-This study investigates a co-located multi-user VR configuration using consumer-grade wireless headsets to address the gap between distributed VR collaboration systems and the requirements of shared physical training environments. Our approach translates evidence-based technical requirements from systematic literature review into an experimental testbed designed to validate performance benchmarks and assess training effectiveness.
+This study investigates a co-located multi-user VR configuration using wireless headsets to address the gap between distributed VR collaboration systems and the requirements of shared physical training environments. Our approach translates evidence-based technical requirements from systematic literature review into an experimental testbed designed to validate performance benchmarks and assess training effectiveness.
 
 \subsection{System Configuration}
 
-The experimental system consists of three Meta Quest 3 standalone headsets operating within a shared 6m $\times$ 6m physical space, networked via WiFi 6E infrastructure. This configuration enables investigation of co-located collaboration while meeting the wireless operation requirement that correlates with improved presence ($r=0.73$, $p<0.001$) in prior paramedic training studies~\cite{SchildJonas2018E—Ev} and the low-latency threshold ($\leq 75$ms RTT) established for effective collaborative VR~\cite{VanDammeSam2024Iolo}.
+The experimental system consists of three Meta Quest 3 standalone headsets operating within a shared physical space, networked via WiFi infrastructure. This configuration enables investigation of co-located collaboration while meeting the wireless operation requirement that correlates with improved presence in prior paramedic training studies \cite{SchildJonas2018E—Ev} and the low-latency threshold ($\leq 75$ms RTT) established for effective collaborative VR \cite{VanDammeSam2024Iolo}.
 
 \textbf{System Components:}
 \begin{itemize}
     \item \textbf{Display Hardware:} 3$\times$ Meta Quest 3 headsets (2064$\times$2208 per eye, 90Hz refresh rate, inside-out tracking)
-    \item \textbf{Network Infrastructure:} WiFi 6E access point (6GHz band, 160MHz channels), dedicated router with QoS configuration
-    \item \textbf{Software Platform:} Unity 2022.3 LTS with Meta XR SDK, Photon PUN 2 networking middleware, custom spatial awareness interface
-    \item \textbf{Calibration Protocol:} Hand tracking-based alignment procedure targeting $<10$mm accuracy~\cite{ReimerDennis2021CfSV}
-    \item \textbf{Safety Measures:} Guardian boundary system, padded training area, real-time tracking quality monitoring
+    \item \textbf{Network Infrastructure:} WiFi networking for local multiplayer
+    \item \textbf{Software Platform:} Unity 6000.0.62f1 with Meta XR SDK v81.0.0, Photon Fusion 1.1.0 networking
+    \item \textbf{Colocation System:} OVR Colocation Discovery API with shared spatial anchors
+    \item \textbf{Safety Measures:} Guardian boundary system with real-time tracking monitoring
 \end{itemize}
 
 \subsection{Research Contributions}
 
 This research addresses four gaps in current multi-user VR literature:
 
-\subsubsection{Co-Located Configuration Validation}
-
-While prior research has examined distributed multi-user VR~\cite{VanDammeSam2024Iolo} and 2-user co-located systems~\cite{ReimerDennis2021CfSV}, systematic validation of 3-user co-located configurations remains unexplored. This study investigates whether Quest 3 wireless headsets can maintain the technical performance benchmarks required for safe, effective co-located training across three simultaneous users during extended (30--60 minute) sessions.
+\subsubsection{Co-Located Configuration Demonstration}
+Co-Located Configuration Demonstration: While prior research has examined distributed multi-user VR \cite{VanDammeSam2024Iolo} and 2-user co-located systems \cite{ReimerDennis2021CfSV}, this prototype demonstrates 3-user co-located configuration using Quest 3 wireless headsets withautomated spatial anchor alignment, investigating technical feasibility and baseline performance characteristics.
 
 \subsubsection{Consumer Hardware Performance Assessment}
 
-Existing co-located VR research primarily employs PC-tethered systems~\cite{SchildJonas2018E—Ev} or older standalone hardware~\cite{ReimerDennis2021CfSV}. This study examines whether current-generation consumer standalone headsets (Quest 3) can achieve enterprise-grade performance metrics: $<10$mm calibration accuracy, $\leq 75$ms network latency, and $\geq 90$fps rendering, thereby testing the viability of accessible hardware platforms for professional training applications.
+Existing co-located VR research primarily employs PC-tethered systems \cite{SchildJonas2018E—Ev} or older standalone hardware \cite{ReimerDennis2021CfSV}. This prototype demonstrates current-generation consumer standalone headsets (Quest 3) with automated spatial anchor colocation, collecting baseline performance metrics (calibration accuracy, network latency, frame rate) to assess feasibility for co-located applications.
 
 \subsubsection{Evidence-Based Design Methodology}
 
-Our system design integrates validated technical requirements from systematic review of 11 empirical studies (mean quality 6.6/10):
+Our system design integrates validated technical requirements from systematic review:
 
 \begin{itemize}
-    \item \textbf{Network latency:} WiFi 6E architecture targeting Van Damme et al.'s $\leq 75$ms threshold for good collaborative QoE~\cite{VanDammeSam2024Iolo}, with monitoring to detect degradation thresholds ($>175$ms acceptable, $>300$ms critical)
+    \item \textbf{Network latency:} Photon Fusion networking targeting Van Damme et al.'s $\leq 75$ms threshold for good collaborative QoE~\cite{VanDammeSam2024Iolo}, with continuous RTT monitoring via metrics logger implementation
     
-    \item \textbf{Spatial interface:} WIM implementation based on Chen et al.'s demonstration of significant performance improvements over 2D representations~\cite{ChenLei2024Eoep}, particularly for complex collaborative tasks
+    \item \textbf{Calibration approach:} Spatial anchor-based alignment using Meta's OVR Colocation Discovery API for automatic spatial correspondence, measuring alignment accuracy from anchor position
     
-    \item \textbf{Calibration accuracy:} Hand tracking-based protocol following Reimer et al.'s validation of $<10$mm achievable accuracy~\cite{ReimerDennis2021CfSV}, addressing safety-critical collision prevention requirements
-    
-    \item \textbf{Visual consistency:} Symmetric rendering across all headsets per Weiss et al.'s findings on asymmetry-induced collaboration degradation~\cite{WeissYannick2025ItEo}
+    \item \textbf{Visual consistency:} Symmetric rendering across all headsets using shared spatial anchors per Weiss et al.'s findings on asymmetry-induced collaboration degradation~\cite{WeissYannick2025ItEo}
 \end{itemize}
 
 This methodology enables systematic comparison between evidence-based requirements and measured system performance.
 
-\subsubsection{Wireless Operation Effects}
+\subsubsection{Wireless Operation Characteristics}
 
-Building on Schild et al.'s correlational findings between wireless operation and improved usability ($r=0.59$--$0.73$) and presence ($r=0.73$, $p<0.001$)~\cite{SchildJonas2018E—Ev}, this study provides comparative data on wireless co-located systems. The Quest 3 configuration eliminates cable management constraints while enabling measurement of whether predicted usability improvements materialize in co-located (vs. distributed) training contexts.
+Building on Schild et al.'s correlational findings between wireless operation and improved usability, this prototype demonstrates wireless co-located system capabilities. The Quest 3 configuration eliminates cable management constraints inherent in tethered systems.
 
-\subsection{Experimental Methodology}
 
-The study follows a mixed-methods approach combining technical performance measurement with user experience assessment:
 
-\subsubsection{Technical Validation (RQ1)}
+\subsection{Implementation Approach}
 
-Network latency, calibration accuracy, and frame rate will be continuously logged during all training sessions. Calibration validation occurs pre-session using hand tracking-based alignment procedures, with accuracy measured against predefined spatial markers. Network performance monitoring captures RTT, packet loss, and jitter at 1Hz sampling rate. Frame rate and frame time metrics are recorded via Unity profiler throughout sessions.
+The prototype follows a technical demonstration approach combining performance metrics collection with co-located interaction capabilities:
 
-\subsubsection{Collaboration Assessment (RQ2, RQ3)}
+\subsubsection{Technical Validation (RQ1, RQ2)}
 
-Training scenarios incorporate objective performance metrics (task completion time, error rates, coordination efficiency) and subjective collaboration quality measures. The WIM interface condition will be compared against baseline spatial awareness conditions to assess Chen et al.'s findings~\cite{ChenLei2024Eoep} in co-located contexts.
+Network latency, calibration accuracy, and frame rate are continuously logged via the MetricsLogger implementation. Calibration validation uses spatial anchor-based alignment through OVR Colocation Discovery API, with alignment error measured as Euclidean distance from anchor position. Network performance monitoring captures RTT from Photon Fusion at 1Hz sampling rate. Frame rate and frame time metrics are recorded throughout sessions.
 
-\subsubsection{Performance Stability Assessment (RQ4)}
+\subsubsection{Collaboration Assessment (RQ3, RQ4)}
 
-Long-term technical performance will be evaluated through continuous monitoring across 30--60 minute sessions:
+Demo scenarios demonstrate co-located interaction capabilities using shared spatial anchors and networked object synchronization. The system enables investigation of spatial coordination and collaboration quality in co-located VR contexts.
+
+\subsubsection{Performance Monitoring}
+
+Technical performance metrics are collected through the MetricsLogger system:
 \begin{itemize}
-    \item \textbf{Frame Rate Stability:} Frame time variance, dropped frame percentage, 90fps maintenance rate
-    \item \textbf{Calibration Drift:} Tracking accuracy degradation over time, re-calibration frequency requirements
-    \item \textbf{Network Performance:} Latency variance (jitter), packet loss patterns, throughput stability
-    \item \textbf{Thermal Performance:} Device temperature monitoring, thermal throttling detection, performance impact correlation
+    \item \textbf{Frame Rate:} FPS and frame time tracking
+    \item \textbf{Calibration:} Spatial anchor alignment error from ColocationManager
+    \item \textbf{Network Performance:} RTT monitoring via Photon Fusion
+    \item \textbf{Device Metrics:} Battery level, battery temperature, estimated CPU usage, memory usage
 \end{itemize}
 
-These metrics enable assessment of whether consumer wireless hardware maintains enterprise-grade performance benchmarks throughout extended training sessions, validating the system's practical viability for professional applications.
+These metrics enable assessment of consumer wireless hardware performance during co-located VR sessions, providing baseline data for future research.
 
-\subsubsection{Study Design}
+\subsubsection{Implementation Scope}
 
-Technical validation will employ logged metrics from multiple 30--60 minute sessions across three training scenarios of progressive complexity. This enables assessment of system performance under varying computational and network demands. Objective task performance metrics (completion time, error rates) will be collected automatically without requiring subjective user assessments.
+The prototype includes demonstration scenes showcasing colocation capabilities (ColocationDiscovery, SpaceSharing, SpatialAnchorsBasics). Performance metrics are logged via MetricsLogger to establish baseline characteristics of multi-user co-located VR on consumer hardware.
 
-\subsection{Methodological Considerations}
+\subsection{Assumptions and Limitations}
 
-\textbf{Hardware Constraints:} Quest 3's mobile processing (Snapdragon XR2 Gen 2) necessitates visual fidelity trade-offs to maintain 90fps target. Performance-optimized rendering (polygon budgets, texture compression, level-of-detail) prioritizes frame rate stability over photorealism.
+\textbf{Hardware Constraints:} Quest 3's mobile processing (Snapdragon XR2 Gen 2) necessitates visual fidelity trade-offs to maintain target frame rates. Performance-optimized rendering prioritizes frame rate stability.
 
-\textbf{Network Variability:} WiFi 6E provides dedicated 6GHz spectrum reducing interference, but environmental factors may affect performance. Continuous monitoring enables identification of degradation patterns and correlation with user experience metrics.
+\textbf{Network Assumptions:} The system assumes reliable WiFi connectivity for local multiplayer. Network performance (latency, stability) depends on local infrastructure quality and environmental factors. Literature suggests WiFi 6E with dedicated 6GHz spectrum could achieve $<30$ms latency~\cite{VanDammeSam2024Iolo}, though our implementation uses available WiFi infrastructure.
 
-\textbf{Calibration Maintenance:} Hand tracking-based calibration accuracy may drift during extended sessions. Mid-session re-calibration protocols trigger when tracking quality metrics fall below thresholds, enabling measurement of drift patterns and validation of Reimer et al.'s findings~\cite{ReimerDennis2021CfSV} under extended use.
+\textbf{Calibration Approach:} The prototype uses Meta's automated spatial anchor alignment rather than manual hand tracking-based calibration explored in literature~\cite{ReimerDennis2021CfSV}. While manual methods can achieve $<10$mm accuracy, spatial anchors provide automatic correspondence suitable for demonstration purposes. Drift monitoring and re-alignment capabilities exist but require extended validation.
 
-\textbf{Evaluation Scope:} This study focuses on technical validation and objective performance metrics. Subjective user experience assessment (presence, usability, cybersickness) requires larger-scale studies with institutional ethics approval and remains outside the current scope. Technical performance benchmarks provide necessary foundation for future user studies.
+\textbf{Prototype Scope:} This is a technical demonstration prototype, not a complete research study. Full validation would require: (1) formal user studies with IRB approval, (2) structured training scenarios with task metrics, (3) comparative interface studies (e.g., WIM vs. baseline), and (4) extended session testing (30-60 minutes) with multiple participant groups. Current implementation provides technical foundation and baseline metrics for such future research.

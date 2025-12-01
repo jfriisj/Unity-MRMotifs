@@ -15,6 +15,8 @@ namespace MRMotifs.ColocatedExperiences.Colocation
     {
         private ColocationManager m_colocationManager;
         private Guid m_sharedAnchorGroupId;
+        private DateTime m_discoveryStartTime;
+        private DateTime m_localizationStartTime;
 
         public override void Spawned()
         {
@@ -58,6 +60,7 @@ namespace MRMotifs.ColocatedExperiences.Colocation
 
         private async void DiscoverNearbySession()
         {
+            m_discoveryStartTime = DateTime.Now;
             OVRColocationSession.ColocationSessionDiscovered += OnColocationSessionDiscovered;
 
             var discoveryResult = await OVRColocationSession.StartDiscoveryAsync();
@@ -75,7 +78,11 @@ namespace MRMotifs.ColocatedExperiences.Colocation
             OVRColocationSession.ColocationSessionDiscovered -= OnColocationSessionDiscovered;
 
             m_sharedAnchorGroupId = session.AdvertisementUuid;
-            Debug.Log($"Motif: Discovered session with UUID: {m_sharedAnchorGroupId}");
+            
+            // Log discovery duration for metrics
+            TimeSpan discoveryDuration = DateTime.Now - m_discoveryStartTime;
+            Debug.Log($"Motif: Discovered session with UUID: {m_sharedAnchorGroupId}. Discovery time: {discoveryDuration.TotalSeconds:F2}s");
+            
             LoadAndAlignToAnchor(m_sharedAnchorGroupId);
         }
 
@@ -136,6 +143,8 @@ namespace MRMotifs.ColocatedExperiences.Colocation
         private async void LoadAndAlignToAnchor(Guid groupUuid)
         {
             Debug.Log($"Motif: Loading anchors for Group UUID: {groupUuid}...");
+            m_localizationStartTime = DateTime.Now;
+            
             var unboundAnchors = new List<OVRSpatialAnchor.UnboundAnchor>();
             var loadResult = await OVRSpatialAnchor.LoadUnboundSharedAnchorsAsync(groupUuid, unboundAnchors);
 
@@ -147,15 +156,22 @@ namespace MRMotifs.ColocatedExperiences.Colocation
 
             foreach (var unboundAnchor in unboundAnchors)
             {
+                DateTime localizationAttemptStart = DateTime.Now;
+                
                 if (await unboundAnchor.LocalizeAsync())
                 {
+                    TimeSpan localizationDuration = DateTime.Now - localizationAttemptStart;
+                    TimeSpan totalLoadTime = DateTime.Now - m_localizationStartTime;
+                    
                     Debug.Log($"Motif: Anchor localized successfully. UUID: {unboundAnchor.Uuid}");
+                    Debug.Log($"Motif: Localization time: {localizationDuration.TotalSeconds:F2}s, Total load time: {totalLoadTime.TotalSeconds:F2}s");
 
                     var anchorGameObject = new GameObject($"Anchor_{unboundAnchor.Uuid}");
                     var spatialAnchor = anchorGameObject.AddComponent<OVRSpatialAnchor>();
                     unboundAnchor.BindTo(spatialAnchor);
 
                     m_colocationManager.AlignUserToAnchor(spatialAnchor);
+                    Debug.Log($"Motif: Colocation complete. Calibration error: {m_colocationManager.GetCurrentCalibrationError():F2}mm");
                     return;
                 }
 
