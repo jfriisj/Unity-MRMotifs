@@ -15,6 +15,29 @@ This project integrates the **AI Game Developer (Unity-MCP)** tool for direct AI
 - **Editor**: `Editor_GetApplicationInformation`, `Editor_SetApplicationState` (play/pause)
 - **Console**: `Console_GetLogs` - check for errors after changes
 
+## Meta Quest Developer Hub MCP (HzOSDevMCP)
+
+This project also integrates **HzOSDevMCP** for Meta Quest device management and documentation access directly from the AI assistant.
+
+### Key HzOSDevMCP Tools Available
+- **Documentation**: 
+  - `get_unity_documentation_index` - Get latest Unity development docs for Meta Quest
+  - `get_unified_documentation_index` - Comprehensive index for all Meta Quest platforms
+  - `fetch_meta_quest_doc` - Retrieve full content of specific documentation pages
+- **Device Logs**: 
+  - `get_device_logcat` - Retrieve historical logcat logs from connected Quest devices
+  - `stream_device_logcat` - Real-time streaming of device logs for debugging
+- **3D Assets**: 
+  - `meta-assets-search` - Search Meta's 3D model library for assets (FBX/GLB)
+- **ADB**: 
+  - `get_adb_path` - Get the preferred ADB binary path for Quest development
+
+### HzOSDevMCP Workflow Guidelines
+1. **Use latest docs**: Always fetch current Meta Quest documentation instead of relying on potentially outdated built-in knowledge
+2. **Debug on-device issues**: Use `get_device_logcat` to analyze crashes, performance issues, and system errors
+3. **Real-time monitoring**: Use `stream_device_logcat` during active development to catch issues as they occur
+4. **Find 3D assets**: Search Meta's asset library before creating custom models
+
 ### Workflow Guidelines
 1. **Check scene state first**: Use `Scene_GetHierarchy` to understand current setup before modifications
 2. **Use MCP for GameObject operations**: Create, modify, parent, add components via MCP tools rather than writing scripts

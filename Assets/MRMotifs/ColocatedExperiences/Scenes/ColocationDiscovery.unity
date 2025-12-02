@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setupGroupPresence: 1
-  destinationApiName: mrmotif_colocationDiscovery
+  destinationApiName: weareheadset
   lobbySessionId: colocationDiscovery
   matchSessionId: colocationDiscovery
 --- !u!4 &337933743

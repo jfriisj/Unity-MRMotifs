@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Prototype
-  productName: MRMotifs
+  productName: WeAreHeadset
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 0}
@@ -142,16 +142,12 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.6
+  bundleVersion: 0.2
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 11400000, guid: cbe7c11806caa434f831cc51058a2bde, type: 2}
   - {fileID: 11400000, guid: 405f47e09cecde14bbed65efa665d8b5, type: 2}
   - {fileID: -944628639613478452, guid: 340ea7ca76e2c994a90d06cd455e1aee, type: 3}
-  - {fileID: 11400000, guid: 1a29827f94e6b5c42896485f3e308f80, type: 2}
-  - {fileID: 3871981940001809035, guid: 164d77ef9199b154685194b5e1feab47, type: 2}
-  - {fileID: 11400000, guid: daa6555bd1b8ba74fbe5a41114476cf2, type: 2}
-  - {fileID: -2373479528795134628, guid: 373b0fba5dc751d439a32c7c5ad68c67, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -173,7 +169,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.Prototype.MRMotifs
+    Android: com.WeAreHeadset.MRMotifs
     Standalone: com.Samples.MRMotifs
   buildNumber:
     Standalone: 0
@@ -181,7 +177,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 6
+  AndroidBundleVersionCode: 7
   AndroidMinSdkVersion: 32
   AndroidTargetSdkVersion: 32
   AndroidPreferredInstallLocation: 0

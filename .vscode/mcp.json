@@ -1,0 +1,18 @@
+{
+  "servers": {
+    "ai-game-developer": {
+      "type": "stdio",
+      "command": "C:/github/Unity-MRMotifs/Library/mcp-server/win-x64/unity-mcp-server.exe",
+      "args": [
+        "--port=56352",
+        "--plugin-timeout=10000",
+        "--client-transport=stdio"
+      ]
+    },
+    "HzOSDevMCP": {
+      "command": "C:\\Program Files\\Meta Quest Developer Hub\\resources\\bin\\hzos-dev-mcp.exe",
+      "args": [],
+      "env": {}
+    }
+  }
+}

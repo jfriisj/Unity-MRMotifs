@@ -80,7 +80,6 @@ crashlytics-build.properties
 Assets/StreamingAssets
 Assets/StreamingAssets.meta
 
-.vscode/
 Assets/Oculus/VR/Editor/Tools/ovr-platform-util.exe
 Assets/Oculus/VR/Editor/Tools/ovr-platform-util.exe.meta
 Assets/Oculus/VR/Editor/Tools.meta
