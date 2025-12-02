@@ -1,0 +1,58 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 4084418625
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 96c92a72b0f73dee1bbf7f17c042c6cc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8ed81b296f435bff7379a355cd1d66d9
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: c94e2c1e0676651c38185651abf3f7a7
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusHandWire.mat
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuestAndRiftS/Materials/OculusTouchForQuestAndRiftS_Material.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/RoundedBoxUI.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/ProceduralArcMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/MRDesk/Materials/MRDeskShadow.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Materials/MetaQuestTouchPlusMATphong_left.mat
+- Packages/com.meta.xr.sdk.interaction.ovr/Editor/Blocks/RealHands/Materials/HandMaterial.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Materials/MetaQuestProLeft_Material.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/DistanceReticle.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Materials/SmallRoomFabricMat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusHandPinchMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/TeleportReticleMaterial.mat
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForRift/Materials/OculusTouchForRift_Material.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/TunnelingEffect.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Materials/SmallRoomRugMat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Materials/SmallRoomWoodMat.mat
+- Assets/MRMotifs/PassthroughTransitioning/Materials/PassthroughFader.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/LocomotionIndicatorMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/MultiGradientUI.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Materials/batteryIndicator_mat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusControllerRayCursor.mat
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuest2/Materials/OculusTouchForQuest2_MAT.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusHand.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Materials/MetaQuestProRight_Material.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Materials/MetaQuestTouchPlusMATphong_right.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusControllerRayMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/TransparentStandard.mat
+- Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/SkyboxGradient.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/Unlit Material.mat
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_png0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_png1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shader0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_tga0

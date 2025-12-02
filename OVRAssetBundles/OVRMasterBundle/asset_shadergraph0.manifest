@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 3968143622
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c635423e64ecee1c2b1f79aac4bb35af
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8ed81b296f435bff7379a355cd1d66d9
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 03e12663d0de735b3f342aca02274c93
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MRMotifs/Shared Assets/Orb/Orb.shadergraph
+- Packages/com.unity.render-pipelines.universal/Shaders/AutodeskInteractive/AutodeskInteractive.shadergraph
+- Assets/MRMotifs/ColocatedExperiences/Shaders/MRUKRoom.shadergraph
+- Assets/MRMotifs/InstantContentPlacement/Shaders/LineIndicatorMotif.shadergraph
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shadersubgraph0

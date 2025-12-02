@@ -1,0 +1,253 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 2397204172
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1942d2a48174911627d4106e2fbac54f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 20090e4e80d7c67360793638902aaba3
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fb2636265f81a10479b4d510c9bb2b0a
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: e1aad51f374b91846bf0414f10b9af7a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 02da923190172ed46aba503bca8a703c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e920b837d13d3324b8911058b2261287, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d786f9acd78c4e97a0e6b1316670fc71, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71a155ece80369d4e99bdaf5e59169b5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 78004595c6cead044be53137cdf8db19, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fa07805353b530a46886b5d5264006fc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4bff16bb2b8cae9409e88ec4d3527c9b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e76943ac7e7394f3e969f0c048b26639, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 88c4712dbd2f2f541b75cc9b6b03618e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a16829cc46c613841b3ba8487b838ec9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9b72e9ba2c21430c818f53e1079c2a93, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 56032097b1ab3a540b3349af62f82310, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a8ba06f8f19d76842a8a9c439d814026, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 34e0461a4939d3b4fbdf706bbd80108c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae6c6a16d00067343918fd810eadff4d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 413bd4e9cbbc96b46ac5a1d62a4105d5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e9a7676b01585ce43908639a27765dfc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bd58ac0f57450f34688d6732d4cccbad, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5eceb167892f49a48a0f8e1ee2bd4e02, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 33284fe95284c70428a2dcce353bfdfd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 925ef87c5bafc37469a2f7ec825dee4b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2d8affdff7ba47d892cc734baac9ac71, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1db8ea62a613f0d488f8f6d4a32758db, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 64e01be82c2d340419dd6a11bee943da, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e664cc78780bbb409c701ec0770af7e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d3facfc50f9e409408ecd7545706e25f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 45431c508fe7a5740957e49b0a0d21b1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 97ad1841d31cfd844995732927b7c958, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 25aa4d1516aa5834899ad1b0a87bd634, type: 3}
+- Class: 114
+  Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 114
+  Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 114
+  Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 120
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 895512359
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Fusion.Runtime
+  ClassName: Fusion.NetworkObjectGuid
+- AssemblyName: Fusion.Runtime
+  ClassName: Fusion.NetworkString`1
+- AssemblyName: Fusion.Runtime
+  ClassName: Fusion._64
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityCreateInfo
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityFeatures
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityFilters
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityLODFlags
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityManifestationFlags
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityQuality
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntitySubMeshInclusionFlags
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntitySubMeshVertexPreference
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.CAPI/ovrAvatar2EntityViewFlags
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.OvrAvatarEntity/AvatarLoadFailedEvent
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.OvrAvatarEntity/AvatarStateEvent
+- AssemblyName: Oculus.AvatarSDK2
+  ClassName: Oculus.Avatar2.OvrAvatarEntity/DebugDrawing
+- AssemblyName: Oculus.Interaction.Samples
+  ClassName: Oculus.Interaction.MinMaxPair
+- AssemblyName: Oculus.Interaction
+  ClassName: Oculus.Interaction.Grab.PoseMeasureParameters
+- AssemblyName: Oculus.Interaction
+  ClassName: Oculus.Interaction.GrabAPI.GrabbingRule
+- AssemblyName: Oculus.VR
+  ClassName: OVRHand/MicrogestureType
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.VertexGradient
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent`1
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent`2
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.RectOffset
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Vector3
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.FontData
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: meta.xr.mrutilitykit
+  ClassName: Meta.XR.MRUtilityKit.EffectMesh/TextureCoordinateModes
+Assets:
+- Assets/MRMotifs/Shared Assets/Prefabs/Audio.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Whiteboard/MicrogestureNavigationInput.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Whiteboard/HitIndicator.prefab
+- Assets/MRMotifs/InstantContentPlacement/Prefabs/LineIndicator.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/LivingRoom/LivingRoom05.prefab
+- Assets/MRMotifs/PassthroughTransitioning/Prefabs/PassthroughDissolver.prefab
+- Packages/com.meta.xr.sdk.core/Scripts/BuildingBlocks/MultiplayerBlocks/Shared/NetworkedAvatar/AvatarSDK/Prefabs/Rendering/AVATAR_LOD_DEBUG_CANVAS.prefab
+- Assets/MRMotifs/PassthroughTransitioning/Prefabs/PassthroughFaderSlider.prefab
+- Assets/MRMotifs/InstantContentPlacement/Prefabs/ShockWaveOrb.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/BallSpawner/[MR Motif] Ball Spawner
+  Sample.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/LivingRoom/LivingRoom01.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/LivingRoom/LivingRoom07.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Tools/EffectMesh.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Whiteboard/Pointer Drawing.prefab
+- Packages/com.meta.xr.sdk.core/Scripts/BuildingBlocks/MultiplayerBlocks/PhotonFusion/NetworkedAvatar/Prefabs/FusionAvatar.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Whiteboard/[MR Motifs] Whiteboard
+  Sample.prefab
+- Assets/MRMotifs/InstantContentPlacement/Prefabs/ShockWaveEffect.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Colocation Discovery/[MR Motifs] SSA
+  Manager.prefab
+- Assets/MRMotifs/SharedActivities/Prefabs/FusionAvatarSdk28PlusNoLegs.prefab
+- Packages/com.meta.xr.sdk.core/Scripts/BuildingBlocks/MultiplayerBlocks/PhotonFusion/PlayerNameTag/Prefabs/NetworkedRig.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/Bedroom/Bedroom00.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Colocation Discovery/[MR Motifs] Colocation
+  Manager.prefab
+- Assets/MRMotifs/InstantContentPlacement/Prefabs/LookingGlass.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Whiteboard/Networked Panel Placement.prefab
+- Assets/MRMotifs/SharedActivities/Prefabs/NetworkedRigMotif.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/LivingRoom/LivingRoom02.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Spatial Anchor/AnchorPrefab.prefab
+- Assets/MRMotifs/InstantContentPlacement/Prefabs/GroundingShadow.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/Bedroom/Bedroom03.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Whiteboard/Networked Pen.prefab
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_fbx1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mat2
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mp30
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_png1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_prefab3
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_resources
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_wav0

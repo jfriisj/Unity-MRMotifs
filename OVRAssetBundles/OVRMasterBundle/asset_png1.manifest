@@ -1,0 +1,49 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 3700624187
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f97511c559507290619a21b754e10dee
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9f349c36d7a6532f767333f9299b3e74
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3b6a0a9de00baf85b662442d2c5df49e
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MRMotifs/Shared Assets/Materials/PlyWoodTiling/Plywood_Albedo.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/CarpetTiling.png
+- Assets/Photon/Fusion/Runtime/FusionBootstrapDebugGUIStartButton.png
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessBoard/chessBoard_ChessBoard_Normal.png
+- Assets/Photon/PhotonVoice/Icons/voice-0128.png
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessBoard/chessBoard_ChessBoard_AlbedoTransparency.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Textures/SCrim.png
+- Assets/Photon/Fusion/Runtime/FusionBootstrapDebugGUIStartWindow.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/LargeFunitureBake.png
+- Assets/MRMotifs/ColocatedExperiences/Textures/circle.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Textures/SmallFurnitureBake.png
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessPieces/Blacks/chessPieces_ChessPiecesBlacks_MetallicSmoothness.png
+- Packages/com.meta.xr.sdk.avatars/CoreAssets/Textures/lut_sss_ZH.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/WoodTiling.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/FabricTiling.png
+- Assets/Photon/Fusion/Runtime/FusionBootstrapDebugGUIStartButtonDown.png
+- Assets/MRMotifs/Shared Assets/Materials/PlyWoodTiling/Plywood_Normal.png
+- Assets/MRMotifs/ColocatedExperiences/Textures/panelGlow.png
+- Assets/Photon/Fusion/Runtime/FusionBootstrapDebugGUIStartButtonOver.png
+- Assets/MRMotifs/InstantContentPlacement/Textures/GroundingShadowSquare.png
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessPieces/Whites/chessPieces_ChessPiecesWhites_Normal.png
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessPieces/Whites/chessPieces_ChessPiecesWhites_AlbedoTransparency.png
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessPieces/Blacks/chessPieces_ChessPiecesBlacks_Normal.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Textures/SmallFloorBake.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/LargeFloorBake.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/MRDesk/Textures/MRDesk.png
+- Packages/com.meta.xr.sdk.avatars/CoreAssets/Textures/lut_sss_curvature.png
+Dependencies: []

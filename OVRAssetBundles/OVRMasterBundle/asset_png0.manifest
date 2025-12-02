@@ -1,0 +1,52 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 983595585
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f84aa872eefd3c3d218e23e65176b384
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9f349c36d7a6532f767333f9299b3e74
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 26fd58129f1446714ba3788a389e0dd5
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPlus/MetaQuestTouchPlus_Normals.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/SharedActivityMovieCowatching.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPlus/MetaQuestTouchPlus_Metallic.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/SharedActivityChess.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPlus/MetaQuestTouchPlus_Left_BaseColor_AO_AlphaRoughness.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/MRDesk/Textures/MRDeskShadow.png
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/Icons/ovr_bb_icon.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/SpatialAnchors.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/ConcreteTiling.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPlus/MetaQuestTouchPlus_Right_BaseColor_AO_AlphaRoughness.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Textures/skydomeBaked.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPro/controller_l_lo_Normal.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Textures/RainbowGradient.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Textures/Reticle-Circle.png
+- Packages/com.meta.xr.sdk.core/Textures/OculusTouchForRift/touchController_albedo.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPro/controller_r_lo_Normal.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/PassthroughFaderSlider.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Textures/fingers_glow_mask.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/PassthroughFaderDissolve.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPro/controller_l_lo_BaseColor.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/PassthroughFaderSelective.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Textures/OCUIIconSet/OCUI_24_Filled_2x.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPro/batteryIndicatorTexture32.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/PassthroughFaderUnderlay.png
+- Packages/com.meta.xr.sdk.interaction/Runtime/Textures/Reticle-Dot.png
+- Packages/com.meta.xr.sdk.core/Textures/MetaQuestTouchPro/controller_r_lo_BaseColor.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/ColocationDiscovery.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/InstantContentPlacement.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/DepthEffects.png
+- Assets/MRMotifs/Shared Assets/Textures/Covers/SpaceSharing.png
+Dependencies: []

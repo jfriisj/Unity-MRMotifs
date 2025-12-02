@@ -1,0 +1,49 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 1811379387
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a699a28abde1d9bfcaeab3b47b4198bf
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 480047cee10d42a3816ae94031095b3a
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: b8c3cecd3fb457ef902fd59d117e6db0
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MRMotifs/ColocatedExperiences/Models/AnchorModel.fbx
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Models/SmallRoom.fbx
+- Assets/MRMotifs/Shared Assets/Materials/PlyWoodTiling/PlyWoodTilingMat.fbx
+- Assets/MRMotifs/Shared Assets/Models/chessBoard.fbx
+- Assets/MRMotifs/Shared Assets/Orb/TetSphere.fbx
+- Assets/MRMotifs/Shared Assets/Models/chessPieces.fbx
+- Assets/MRMotifs/Shared Assets/Models/CoffeeTable.fbx
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_png1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shader0

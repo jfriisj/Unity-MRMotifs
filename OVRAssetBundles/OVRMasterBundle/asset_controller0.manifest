@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 3281080192
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 635c1a77362bda2b46715079ff14adcb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ee737d6afc00fec93c1987e485ffa6bd
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 69a97959b4bb3041f30f369efc12a798
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/SecondaryButton_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/ToggleButton_Borderless_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/ToggleButton_Dark.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuestAndRiftS/Animation/OculusTouchQuestAndRiftSLeftAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/BorderlessButton_Dark.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Animation/MetaQuestTouchPlusLeftAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuest2/Animation/OculusTouchQuest2LeftAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Animation/MetaQuestTouchProRightAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/Slider_Dark.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForRift/Animation/OculusTouchRiftRightAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuestAndRiftS/Animation/OculusTouchQuestAndRiftSRightAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuest2/Animation/OculusTouchQuest2RightAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Animation/MetaQuestTouchProLeftAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Animation/MetaQuestTouchPlusRightAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForRift/Animation/OculusTouchRiftLeftAnimation.controller
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_fbx0

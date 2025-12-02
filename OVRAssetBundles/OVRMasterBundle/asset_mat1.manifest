@@ -1,0 +1,62 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 2823516087
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0e3e86b4c5022cbdc31da4447906b50c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f4678b21a74d48dd374d176af846d926
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 18da52bae79ffad3192ce6af0fcccaab
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MRMotifs/InstantContentPlacement/Materials/LineIndicator.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/SmallRoomWoodMat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Materials/SmallRoomFloorMat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/SmallRoomFloorMat.mat
+- Assets/MRMotifs/InstantContentPlacement/Materials/DepthMaskMotif.mat
+- Assets/MRMotifs/Shared Assets/Materials/LitOccluded.mat
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessPieces/Whites/ChessPieces.mat
+- Assets/MRMotifs/InstantContentPlacement/Materials/DepthRelighting.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Models/skybaker.mat
+- Assets/MRMotifs/Shared Assets/Orb/Shader Graphs_Orb.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/SmallRoom/Materials/SmallRoomFurnitureMat.mat
+- Assets/MRMotifs/InstantContentPlacement/Materials/DepthLookingGlass.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/WindowStencilWriter.mat
+- Assets/MRMotifs/Shared Assets/Materials/MovieHandle.mat
+- Assets/MRMotifs/PassthroughTransitioning/Materials/PassthtoughDissolver.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/Green.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/Blue.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/SmallRoomFurnitureMat.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/White.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/SmallRoomRugMat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/MRDesk/Materials/MRDeskMat.mat
+- Assets/MRMotifs/Shared Assets/Materials/Chess/ChessPieces/Blacks/ChessBlacks.mat
+- Assets/MRMotifs/InstantContentPlacement/Materials/DepthScanEffect.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/SmallRoomFabricMat.mat
+- Assets/MRMotifs/InstantContentPlacement/Materials/GroundingShadowMotif.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/Red.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/Black.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/Environment/Room/Materials/StencilSkydome.mat
+- Assets/MRMotifs/Shared Assets/Materials/cape_hill_4k.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/UIDefaultOverlay.mat
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_exr0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_png0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_png1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shader0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shader1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shadergraph0

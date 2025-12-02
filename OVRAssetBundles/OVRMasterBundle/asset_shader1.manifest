@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 2343153015
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 73a05af316e33029c4ea0b3604acaed2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bb8521372c98e74594d3b7eb1b0a7a88
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 55e9d627ecc298c2191efe72d77887b2
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.mrutilitykit/Core/Shaders/MRUKLit.shader
+- Assets/MRMotifs/Shared Assets/Shaders/SpriteUnlitOccluded.shader
+- Packages/com.meta.xr.sdk.core/Shaders/EnvironmentDepth/OcclusionLit.shader
+- Packages/com.meta.xr.mrutilitykit/Core/Shaders/SceneMeshDefault.shader
+- Assets/MRMotifs/InstantContentPlacement/Shaders/GroundingShadowMotif.shader
+- Packages/com.meta.xr.mrutilitykit/Core/Shaders/Wireframe.shader
+Dependencies: []

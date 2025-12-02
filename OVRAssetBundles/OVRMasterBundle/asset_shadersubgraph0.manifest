@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 1522178080
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6d0670395ca0e869bfcb75dd994567ea
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 096365e1278ab6bbfc11e21fbfb90ee2
+HashAppended: 0
+ClassTypes: []
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.core/Shaders/EnvironmentDepth/URP/Shadergraph/OcclusionSubGraph.shadersubgraph
+Dependencies: []

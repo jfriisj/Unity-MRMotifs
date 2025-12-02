@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 2595525725
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 290189a3f6001df6571060631b59863e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8ed81b296f435bff7379a355cd1d66d9
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 6dfdfbcb5a2ae82cd53ba0ba3281464f
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/Wireframe.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/PURPLE_Storage.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/Sprite-Unlit.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/BallOcclusion.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/BLACK_Window.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/PINK_Bed.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/RED_Couch.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/DARKGRAY_WallArt.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/BLUE_Table.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/GREEN_Plant.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/GRAY_Wall.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/RoomBoxEffects.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/ORANGE_Lamp.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/BROWN_Door.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/YELLOW_Screen.mat
+- Assets/MRMotifs/ColocatedExperiences/Materials/Shader Graphs_MRUKRoom.mat
+- Packages/com.meta.xr.mrutilitykit/Core/Materials/WHITE_Other.mat
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shader1
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shadergraph0

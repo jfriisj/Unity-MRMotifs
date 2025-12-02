@@ -1,0 +1,50 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 3501250082
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 869d9b3a9cd67591e6c307fd630c545f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bb8521372c98e74594d3b7eb1b0a7a88
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ea5d7ef0ac00e69a3ec013ea008e40be
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.core/Shaders/MetaLit.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/Locomotion/TransparentVertexTexture.shader
+- Assets/MRMotifs/InstantContentPlacement/Shaders/DepthScanEffectMotif.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/Locomotion/Hotspot.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Resources/Shaders/UIOverlay.shader
+- Assets/MRMotifs/InstantContentPlacement/Shaders/DepthMaskMotif.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/SkyboxGradient.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/Shadow.shader
+- Assets/MRMotifs/PassthroughTransitioning/Shaders/PassthroughDissolver.shader
+- Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/OculusControllerRayShader.shader
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/PassthroughWindow/Shaders/DeprecatedSelectivePassthrough.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/room.shader
+- Packages/com.meta.xr.sdk.avatars/Scripts/Skinning/GpuSkinning/Shaders/skin-to-texture.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/Locomotion/TunnelingEffect.shader
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/RoomModel/Shaders/TransparentTexture.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/Shaders/MultiGradientUI.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/StencilWriter.shader
+- Assets/MRMotifs/PassthroughTransitioning/Shaders/PassthroughFader.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/MRDeskShadow.shader
+- Packages/com.meta.xr.sdk.avatars/Scripts/Skinning/GpuSkinning/Shaders/combine-morph-targets.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/Shaders/RoundedBoxUI.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/StencilSky.shader
+- Assets/MRMotifs/InstantContentPlacement/Shaders/DepthLookingGlassMotif.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/OculusHandCursor.shader
+- Packages/com.meta.xr.sdk.avatars/Scripts/Common/Shaders/Recommended/Style-2-Avatar-Meta.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/OculusHand.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Shaders/LightmapPBR.shader
+- Assets/MRMotifs/InstantContentPlacement/Shaders/DepthRelightingMotif.shader
+Dependencies: []

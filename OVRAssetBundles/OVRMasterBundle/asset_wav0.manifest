@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 1268807978
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 07c98965ef176c74da135a4cd293a2bc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 9ffdbabcca108bcdd77b08b4adf27acf
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Release_04.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicRay_Press.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Release_02.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Release_01.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Grab_03.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Release_03.wav
+- Assets/MRMotifs/ColocatedExperiences/Audio/bubble.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicPoke_ButtonPress.wav
+- Assets/MRMotifs/ColocatedExperiences/Audio/bounce.wav
+- Assets/MRMotifs/Shared Assets/Audio/SynthDisappear.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicPoke_ButtonRelease.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_Locomotion_Enter.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Grab_05.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Grab_04.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Release_05.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Grab_01.wav
+- Assets/MRMotifs/Shared Assets/Audio/AmbientForest.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_BasicGrab_Grab_02.wav
+- Assets/MRMotifs/Shared Assets/Audio/SynthAppear.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Sounds/GrabObject01.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Sounds/DropObject01.wav
+- Assets/MRMotifs/Shared Assets/Audio/Sonar Ping 01.wav
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Audio/Content/Interaction_Locomotion_Exit.wav
+Dependencies: []

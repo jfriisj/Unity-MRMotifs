@@ -1,0 +1,84 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.62f1
+CRC: 1947811303
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7b51ea3c4284f5fa10ae36ae6f68e7d3
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a57bdc89f6718bcedcfc889246601582
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3a094e429b7e856da030c288bf9bc0f5
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0e29ebe25f0323e4baacd7e90e375b83, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 093b4031c300bd241849c0c39523b111, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: de27d7f2f20024e18898941292d6c164, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e7c54edf3d288044e813e05f8f5bbba6, type: 3}
+- Class: 114
+  Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 114
+  Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 114
+  Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 134
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Fusion.Runtime
+  ClassName: Fusion.NetworkObjectGuid
+- AssemblyName: Oculus.VR
+  ClassName: OVRAnchor/TrackerConfiguration
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent`1
+- AssemblyName: meta.xr.mrutilitykit
+  ClassName: Meta.XR.MRUtilityKit.MRUK/MRUKSettings
+Assets:
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/Space Sharing/[MR Motifs] Space Sharing
+  Manager.prefab
+- Assets/MRMotifs/ColocatedExperiences/Prefabs/BallSpawner/BouncingBall.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Tools/ImmersiveSceneDebugger.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/Office/Office08.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Tools/MRUK.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/Office/Office09.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/Bedroom/Bedroom06.prefab
+- Packages/com.meta.xr.mrutilitykit/Core/Rooms/Prefabs/Other/OtherRoom04_empty.prefab
+Dependencies:
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_mat2
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_physicmaterial0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_prefab2
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_shader0
+- C:/github/Unity-MRMotifs/OVRAssetBundles/OVRMasterBundle/asset_wav0
